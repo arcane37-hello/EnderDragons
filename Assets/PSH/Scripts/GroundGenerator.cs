@@ -5,6 +5,8 @@ using UnityEngine;
 public class GroundGenerator : MonoBehaviour
 {
     public GameObject cubePrefab;
+    public int groundWidth = 100; // x 방향 큐브 개수
+    public int groundLength = 100; // z 방향 큐브 개수
 
     void Start()
     {
@@ -13,8 +15,6 @@ public class GroundGenerator : MonoBehaviour
 
     void GenerateGround()
     {
-        int groundWidth = 100; // x 방향 큐브 개수
-        int groundLength = 100; // z 방향 큐브 개수
 
         // 큐브들을 배치할 시작 위치 설정
         Vector3 startPosition = new Vector3(-groundWidth / 2, 0, -groundLength / 2);

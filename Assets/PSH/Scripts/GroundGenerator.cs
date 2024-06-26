@@ -18,7 +18,7 @@ public class GroundGenerator : MonoBehaviour
     {
 
         // 큐브들을 배치할 시작 위치 설정
-        Vector3 startPosition = new Vector3(-groundWidth / 2, groundHeight / 2, -groundLength / 2);
+        Vector3 startPosition = new Vector3(-groundWidth / 2, -groundHeight / 2, -groundLength / 2);
 
         // 땅을 구성할 큐브들을 생성하는 코드
         for (int x = 0; x < groundWidth; x++)

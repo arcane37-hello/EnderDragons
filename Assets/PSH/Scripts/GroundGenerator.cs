@@ -13,8 +13,8 @@ public class GroundGenerator : MonoBehaviour
 
     void GenerateGround()
     {
-        int groundWidth = 10; // x 방향 큐브 개수
-        int groundLength = 10; // z 방향 큐브 개수
+        int groundWidth = 100; // x 방향 큐브 개수
+        int groundLength = 100; // z 방향 큐브 개수
 
         // 큐브들을 배치할 시작 위치 설정
         Vector3 startPosition = new Vector3(-groundWidth / 2, 0, -groundLength / 2);

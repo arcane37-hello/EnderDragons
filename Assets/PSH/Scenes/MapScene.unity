@@ -152,8 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 3108304394386540472, guid: e0f0f3eec5b59414eb8f2a2cb581e885, type: 3}
-  groundWidth: 100
-  groundLength: 100
+  groundWidth: 70
+  groundHeight: 3
+  groundLength: 70
 --- !u!4 &688491732
 Transform:
   m_ObjectHideFlags: 0
@@ -310,8 +311,8 @@ MonoBehaviour:
   treeBlockPrefab: {fileID: 9165290315718349456, guid: a31a68f16e6444f47886e406e391fb1b, type: 3}
   leafBlockPrefab: {fileID: 6007595715175377247, guid: 1c6ddf3aee81d9943a4c997003ce3e66, type: 3}
   numberOfTrees: 30
-  groundWidth: 100
-  groundLength: 100
+  groundWidth: 70
+  groundLength: 70
   minHeight: 5
   maxHeight: 7
 --- !u!1 &1105809599

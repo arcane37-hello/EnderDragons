@@ -16,16 +16,19 @@ public class GroundGenerator : MonoBehaviour
 
     void GenerateGround()
     {
-
         // 큐브들을 배치할 시작 위치 설정
-        Vector3 startPosition = new Vector3(-groundWidth / 2, -groundHeight / 2, -groundLength / 2);
+        Vector3 startPosition = new Vector3(-groundWidth / 2, 0, -groundLength / 2); // y 방향 높이는 0으로 고정
 
         // 땅을 구성할 큐브들을 생성하는 코드
         for (int x = 0; x < groundWidth; x++)
         {
-            for (int y = 0; y < groundHeight; y++)
+            for (int z = 0; z < groundLength; z++)
             {
-                for (int z = 0; z < groundLength; z++)
+                // Perlin Noise를 이용해 높이 결정
+                float heightNoise = Mathf.PerlinNoise((float)x / 10f, (float)z / 10f); // Perlin Noise 값 계산
+                int height = Mathf.RoundToInt(heightNoise * (groundHeight - 1)) + 1; // 높이 계산 (1 ~ groundHeight)
+
+                for (int y = 0; y < height; y++)
                 {
                     // 각 큐브의 위치 계산
                     Vector3 position = startPosition + new Vector3(x, y, z);

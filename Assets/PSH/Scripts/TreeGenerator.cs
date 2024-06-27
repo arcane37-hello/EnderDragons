@@ -33,7 +33,7 @@ public class TreeGenerator : MonoBehaviour
             // 나무 기둥 생성
             GameObject trunk = new GameObject("Tree");
 
-            // 나무 블록들로 구성된 기둥 생성
+            // 나무 블록들로 구성된 기둥 생성 (크기는 고정)
             for (int y = 1; y <= randomHeight; y++)
             {
                 GameObject treeBlock = Instantiate(treeBlockPrefab, trunkPosition + new Vector3(0, y - 1, 0), Quaternion.identity);
@@ -42,13 +42,20 @@ public class TreeGenerator : MonoBehaviour
 
             // 나뭇잎 생성
             GameObject leaves = new GameObject("Leaves");
-            for (int x = -1; x <= 1; x++)
+
+            // 랜덤한 나뭇잎 패턴 생성
+            int leafRange = Random.Range(1, 2); // 각 축의 범위를 랜덤하게 설정할 변수
+
+            for (int x = -leafRange; x <= leafRange; x++)
             {
-                for (int y = 0; y <= 1; y++)
+                for (int y = -leafRange; y <= leafRange; y++)
                 {
-                    for (int z = -1; z <= 1; z++)
+                    for (int z = -leafRange; z <= leafRange; z++)
                     {
-                        Instantiate(leafBlockPrefab, trunkPosition + new Vector3(x, randomHeight + y, z), Quaternion.identity, leaves.transform);
+                        // 나뭇잎 위치와 회전을 랜덤하게 설정할 수 있음
+                        Vector3 leafPosition = trunkPosition + new Vector3(x, randomHeight + y, z);
+                        GameObject leafBlock = Instantiate(leafBlockPrefab, leafPosition, Quaternion.identity);
+                        leafBlock.transform.SetParent(leaves.transform);
                     }
                 }
             }

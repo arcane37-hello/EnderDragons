@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     //플레이어 속도랑 방향
     public float MoveSpeed = 2.0f;
     public Vector3 direction;
+    public float RunSpeed = 4.0f;
 
     // 캐릭터 컨트롤러 변수
     CharacterController cc;
@@ -27,7 +28,7 @@ public class PlayerMove : MonoBehaviour
     public bool isJumping = false;
 
     // 달리기
-    public float RunSpeed = 4.0f;
+    public float RunSpeedValue = 4.0f;
 
     //// 화면 돌리기 회전
     //public float rotspeed = 200f;
@@ -51,19 +52,14 @@ public class PlayerMove : MonoBehaviour
         float ad = Input.GetAxis("Vertical");
         //float space = Input.GetAxisRaw("Jump");
 
-        // 달리기
-
-        
-        //if (Input.GetButtonDown("Run"))
-        //{
-        //    Vector3 Forward = new Vector3(ws, 0,0);
-        //    transform.position += Forward * RunSpeed * Time.deltaTime;
-        //}
-
         // 이동 방향 설정
         //Vector3 direction = new Vector3(ws, space, ad);
         Vector3 direction = new Vector3(ws, 0, ad);
         direction.Normalize();
+
+        // 달리기 체크 ( ctrl 키 누르면 달리기)
+        bool isRunning = Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.W);
+        float currentSpeed = isRunning ? RunSpeed : MoveSpeed;
 
         // 카메라 기준으로 방향 변환
         direction = Camera.main.transform.TransformDirection(direction);
@@ -101,6 +97,7 @@ public class PlayerMove : MonoBehaviour
         else
         {
             isJumping = true;
+            yVelocity += gravity * Time.deltaTime;
         }
 
 
@@ -115,10 +112,11 @@ public class PlayerMove : MonoBehaviour
 
 
 
+
         // 이동 속도에 맞춰 이동한다
 
         //transform.position += direction * MoveSpeed * Time.deltaTime;
-        cc.Move(direction * MoveSpeed * Time.deltaTime);
+        cc.Move(direction * currentSpeed * Time.deltaTime + Vector3.up * yVelocity * Time.deltaTime);
 
         //// 화면 돌리기
         ////1. 마우스 입력 받기

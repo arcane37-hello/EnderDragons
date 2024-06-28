@@ -283,10 +283,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 2
   direction: {x: 0, y: 0, z: 0}
+  RunSpeed: 4
   yVelocity: 0
   jumpPower: 10
   isJumping: 0
-  RunSpeed: 4
+  RunSpeedValue: 4
 --- !u!1 &157842967
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,10 +408,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 2
   direction: {x: 0, y: 0, z: 0}
+  RunSpeed: 4
   yVelocity: 0
   jumpPower: 10
   isJumping: 0
-  RunSpeed: 4
+  RunSpeedValue: 4
 --- !u!1 &190512968
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,12 +1296,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276e8ae7d50848f4690a055b795ef3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
+  MoveSpeed: 3
   direction: {x: 0, y: 0, z: 0}
+  RunSpeed: 7
   yVelocity: 0
-  jumpPower: 10
+  jumpPower: 8
   isJumping: 0
-  RunSpeed: 4
+  RunSpeedValue: 4
 --- !u!143 &1994230040
 CharacterController:
   m_ObjectHideFlags: 0

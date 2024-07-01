@@ -21,11 +21,11 @@ public class RockGenerator : MonoBehaviour
     void GenerateRocks()
     {
         // 독립적으로 큐브들을 생성할 시작 위치 설정
-        Vector3 startPosition = new Vector3(-50, -1, -50); // 예시로 설정한 값, 실제로 사용할 맵 크기에 맞게 조정하세요.
+        Vector3 startPosition = new Vector3(-25, -1, -25); // 예시로 설정한 값, 실제로 사용할 맵 크기에 맞게 조정하세요.
 
-        for (int x = 0; x < 100; x++) // 예시로 x와 z의 범위를 100으로 설정했습니다.
+        for (int x = 0; x < 50; x++) 
         {
-            for (int z = 0; z < 100; z++)
+            for (int z = 0; z < 50; z++)
             {
                 // Perlin Noise를 이용해 돌이 생성될 확률을 결정
                 float rockNoise = Mathf.PerlinNoise((float)x / 20f, (float)z / 20f); // Perlin Noise 값 계산

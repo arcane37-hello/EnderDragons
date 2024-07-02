@@ -9,6 +9,7 @@ public class Patrol : MonoBehaviour
     public float maxMoveDuration = 3f; // 최대 이동 시간
     public float stopDuration = 1f; // 멈추는 시간
     public float minMoveDistance = 3f; // 최소 이동 거리
+    public float maxStopDuration = 7f; // 최대 멈춤 시간
 
     private float moveTimer; // 이동 타이머
     private float stopTimer; // 멈춤 타이머
@@ -55,6 +56,17 @@ public class Patrol : MonoBehaviour
                     // 일정 거리 이동 후 멈춤
                     stopTimer = stopDuration;
                     moveDirection = Vector3.zero;
+                }
+                else
+                {
+                    // 충돌 체크
+                    RaycastHit hit;
+                    if (Physics.Raycast(transform.position, moveDirection, out hit, 1.0f))
+                    {
+                        // 충돌이 발생하면 방향 변경
+                        Vector3 newDirection = Vector3.Cross(Vector3.up, hit.normal);
+                        moveDirection = newDirection.normalized;
+                    }
                 }
             }
         }

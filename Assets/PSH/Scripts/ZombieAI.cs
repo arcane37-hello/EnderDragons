@@ -9,12 +9,15 @@ public class ZombieAi : MonoBehaviour
     public float detectionRange = 10f; // 몬스터가 플레이어를 인식할 범위
     public float attackRange = 2f; // 공격 범위
     public float attackDelay = 2f; // 공격 딜레이
+    public float jumpForce = 5f; // 점프 힘
 
     private bool isAttacking = false; // 공격 중인지 여부
+    private Rigidbody rb;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform; // 플레이어를 태그로 찾아 할당
+        rb = GetComponent<Rigidbody>(); // Rigidbody 컴포넌트 가져오기
         InvokeRepeating("CheckPlayerDistance", 0f, 0.5f); // 일정 주기로 플레이어와 거리를 체크
     }
 
@@ -59,5 +62,28 @@ public class ZombieAi : MonoBehaviour
     void ResetAttack()
     {
         isAttacking = false;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // 충돌한 오브젝트의 태그가 "Ground"일 때
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            // 법선 벡터를 가져옴
+            Vector3 normal = collision.contacts[0].normal;
+
+            // 만약 법선 벡터의 y값이 0에 가깝다면 (수평면)
+            if (Mathf.Abs(normal.y) < 0.1f)
+            {
+                // 점프
+                Jump();
+            }
+        }
+    }
+
+    void Jump()
+    {
+        // 점프 로직 추가
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 }

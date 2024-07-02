@@ -550,10 +550,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  minMoveDuration: 3
-  maxMoveDuration: 5
+  minMoveDuration: 1
+  maxMoveDuration: 3
   stopDuration: 1
   minMoveDistance: 5
+  maxStopDuration: 7
 --- !u!114 &1392561365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,11 +567,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f71e0c97cfc6dd4487a6fa989a9b77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 821327499}
   moveSpeed: 3
   detectionRange: 10
   attackRange: 2
   attackDelay: 2
+  jumpForce: 5
 --- !u!54 &1392561366
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -596,7 +598,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1392561367
 BoxCollider:

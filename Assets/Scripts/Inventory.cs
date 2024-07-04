@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        //게임오버 UI를 비활성화한다.
+        //인벤토리를 비활성화한다.
         Inventory1.SetActive(false);
     }
 
@@ -32,6 +32,7 @@ public class Inventory : MonoBehaviour
                 Inventory1.SetActive(false);
                 isInventoryOpen=true;
             }
+
 
 
         }

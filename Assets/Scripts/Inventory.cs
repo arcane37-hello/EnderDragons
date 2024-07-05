@@ -10,11 +10,22 @@ public class Inventory : MonoBehaviour
     public GameObject GameOverUI;
     public GameObject Inventory1;
     public bool isInventoryOpen = false;
+    public GameObject blackbackground; // 어두운 배경
+    public bool isblackbackground = false;
 
     void Start()
     {
         //인벤토리를 비활성화한다.
         Inventory1.SetActive(false);
+        //if (Inventory1 != null)
+        //{
+        //    Inventory1.SetActive(false); // 초기 상태에서 인벤토리 비활성화
+        //}
+        //if (blackbackground != null)
+        //{
+        //    blackbackground.SetActive(false); // 초기 상태 배경 비활성화
+        //}
+        blackbackground.SetActive(false); // 초기 상태 배경 비활성화
     }
 
 
@@ -32,7 +43,19 @@ public class Inventory : MonoBehaviour
                 Inventory1.SetActive(false);
                 isInventoryOpen=true;
             }
-
+             if (isblackbackground)
+                {
+                    blackbackground.SetActive(true); // 배경 활성화
+                    isblackbackground = false;
+                }
+             else
+            {
+                if (blackbackground == null)
+                {
+                    blackbackground.SetActive(false); // 배경 비활성화
+                    isblackbackground = true;
+                }
+            }
 
 
         }

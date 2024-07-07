@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
-{
+{// 점프 실패
     //public float jumpForce = 10f;
     //public Transform groundCheck;
     //public LayerMask groundLayer;

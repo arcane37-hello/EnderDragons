@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
+    public List<GameObject> excludeObjects; // 스크립트가 작동하지 않을 GameObject들을 설정할 리스트 변수
+
     private GameObject currentPrefab; // 현재 눌린 프리팹
     private Camera mainCamera; // 카메라 참조 변수
 
@@ -36,6 +38,12 @@ public class Destroy : MonoBehaviour
             {
                 // Raycast로 맞은 위치에 있는 GameObject 가져오기
                 currentPrefab = hit.collider.gameObject;
+
+                // excludeObjects에 포함된 GameObject라면 삭제하지 않고 함수 종료
+                if (excludeObjects.Contains(currentPrefab))
+                {
+                    return;
+                }
             }
 
             // 3초 후에 삭제하기

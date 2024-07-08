@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 3108304394386540472, guid: e0f0f3eec5b59414eb8f2a2cb581e885, type: 3}
-  waterCubePrefab: {fileID: 0}
+  waterCubePrefab: {fileID: 4618178774924840137, guid: c2cf68477a9287f44a5ab5a3a2495734, type: 3}
   groundWidth: 50
   groundHeight: 5
   groundLength: 50

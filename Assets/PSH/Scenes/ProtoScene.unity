@@ -1942,9 +1942,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 3108304394386540472, guid: e0f0f3eec5b59414eb8f2a2cb581e885, type: 3}
+  waterCubePrefab: {fileID: 0}
   groundWidth: 50
   groundHeight: 5
   groundLength: 50
+  lakeSize: 5
 --- !u!4 &1186185162
 Transform:
   m_ObjectHideFlags: 0

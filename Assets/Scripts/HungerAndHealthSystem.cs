@@ -16,8 +16,8 @@ public class HungerAndHealthSystem : MonoBehaviour
 
     private float hungerTimer = 0f; // 배고픔 타이머
     private float healthTimer = 0f; // 체력 타이머
-    private float hungerDecreaseInterval = 0.1f; // 배고픔 감소 간격
-    private float healthDecreaseInterval = 0.1f; // 체력 감소 간격
+    private float hungerDecreaseInterval = 2f; // 배고픔 감소 간격
+    private float healthDecreaseInterval = 1f; // 체력 감소 간격
 
     private bool isFoodSelected = false; // 음식이 선택되었는지 여부
     private bool isGameOver = false; // 게임 오버 상태

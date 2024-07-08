@@ -1942,9 +1942,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 3108304394386540472, guid: e0f0f3eec5b59414eb8f2a2cb581e885, type: 3}
+  waterCubePrefab: {fileID: 0}
   groundWidth: 50
   groundHeight: 5
   groundLength: 50
+  lakeSize: 5
 --- !u!4 &1186185162
 Transform:
   m_ObjectHideFlags: 0
@@ -2791,6 +2793,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266c5697978016c4782fea7cc23e2a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  excludeObjects:
+  - {fileID: 1994230034}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1994230042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2805,7 +2811,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickaxePrefab: {fileID: 1122917398}
   swordPrefab: {fileID: 503183667}
-  currentWeapon: {fileID: 0}
 --- !u!1 &2083692418
 GameObject:
   m_ObjectHideFlags: 0

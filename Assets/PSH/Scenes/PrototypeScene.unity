@@ -1930,7 +1930,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266c5697978016c4782fea7cc23e2a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  excludeObjects: []
+  smallBlockPrefab: {fileID: 0}
+  dropPoint: {fileID: 0}
+  excludeObjects:
+  - {fileID: 650493434}
+  - {fileID: 1392561363}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &650493442
 MonoBehaviour:
   m_ObjectHideFlags: 0

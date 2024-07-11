@@ -31,7 +31,7 @@ public class Destroy : MonoBehaviour
             DropBlock();
         }
 
-        // 블록을 부수는 조건 (예: 마우스 오른쪽 버튼 클릭)
+        // 블록을 부수는 조건 (예: 마우스 왼쪽 버튼 클릭)
         if (Input.GetMouseButtonDown(0))
         {
             DestroyBlock();

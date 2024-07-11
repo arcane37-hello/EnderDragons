@@ -97,7 +97,7 @@ public class HungerAndHealthSystem : MonoBehaviour
         }
         currentHunger = Mathf.Min(newHunger, hungerIcons.Length);
 
-        // 음식을 사용한 후 음식을 선택되지 않은 상태로 만듭니다.
+        // 음식을 사용한 후 음식을 선택되지 않은 상태로 만듭니다. ---------를 하니까 9번 놓고 가만히 있는 상태에서 또 마우스 우클릭을 해도 음식으로 인식을 못해서 배고픔 회복이 안됨.그래서 true로 바꿨는데 true로 하니까 한번 음식 먹고나면 그 다음엔 아무 키 눌러도 다 우클릭만 하면 음식 사용 가능(배고픔 회복)
         isFoodSelected = true;
     }
 

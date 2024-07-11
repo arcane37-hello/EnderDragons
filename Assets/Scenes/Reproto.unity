@@ -918,7 +918,7 @@ GameObject:
   - component: {fileID: 239641760}
   - component: {fileID: 239641759}
   - component: {fileID: 239641758}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerLeftLegs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1576,7 +1576,7 @@ GameObject:
   - component: {fileID: 402465763}
   - component: {fileID: 402465762}
   - component: {fileID: 402465761}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2302,7 +2302,7 @@ GameObject:
   - component: {fileID: 704682924}
   - component: {fileID: 704682923}
   - component: {fileID: 704682922}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2439,7 +2439,7 @@ GameObject:
   - component: {fileID: 739350646}
   - component: {fileID: 739350645}
   - component: {fileID: 739350644}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerRightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3247,6 +3247,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1329015197}
     m_Modifications:
+    - target: {fileID: 242555346612873680, guid: 15f4387ec1583e84e857adea4dd2d155, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5045158520621511482, guid: 15f4387ec1583e84e857adea4dd2d155, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.5
@@ -3308,8 +3312,20 @@ PrefabInstance:
       value: Pickaxe
       objectReference: {fileID: 0}
     - target: {fileID: 5570900362662930816, guid: 15f4387ec1583e84e857adea4dd2d155, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570900362662930816, guid: 15f4387ec1583e84e857adea4dd2d155, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6651811518114497557, guid: 15f4387ec1583e84e857adea4dd2d155, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7848804350028320751, guid: 15f4387ec1583e84e857adea4dd2d155, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8058512295908720455, guid: 15f4387ec1583e84e857adea4dd2d155, type: 3}
       propertyPath: m_LocalScale.z
@@ -3492,7 +3508,7 @@ GameObject:
   - component: {fileID: 1099722491}
   - component: {fileID: 1099722490}
   - component: {fileID: 1099722489}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerLeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4063,7 +4079,7 @@ GameObject:
   - component: {fileID: 1329015190}
   - component: {fileID: 1329015189}
   - component: {fileID: 1329015188}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerRightLegs
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4283,7 +4299,7 @@ GameObject:
   - component: {fileID: 1376560632}
   - component: {fileID: 1376560631}
   - component: {fileID: 1376560630}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4750,6 +4766,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1329015197}
     m_Modifications:
+    - target: {fileID: 830505678337350834, guid: db6d0d5850086b6479a3ccd82014af52, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252779654585777818, guid: db6d0d5850086b6479a3ccd82014af52, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7370760371473839463, guid: db6d0d5850086b6479a3ccd82014af52, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.5
@@ -4811,8 +4835,16 @@ PrefabInstance:
       value: Sword
       objectReference: {fileID: 0}
     - target: {fileID: 7854809007935533021, guid: db6d0d5850086b6479a3ccd82014af52, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854809007935533021, guid: db6d0d5850086b6479a3ccd82014af52, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080191347873667489, guid: db6d0d5850086b6479a3ccd82014af52, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5691,7 +5723,7 @@ GameObject:
   - component: {fileID: 2088745418}
   - component: {fileID: 2088745417}
   - component: {fileID: 2088745416}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CamPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}

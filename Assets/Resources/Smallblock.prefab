@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smallblock
       objectReference: {fileID: 0}
+    - target: {fileID: 3108304394386540472, guid: e0f0f3eec5b59414eb8f2a2cb581e885, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4049882356825463694, guid: e0f0f3eec5b59414eb8f2a2cb581e885, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2

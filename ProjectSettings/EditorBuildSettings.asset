@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/PSH/Scenes/StartScene.unity
     guid: b7fbe3ba2ab00bc448faaabb4f735898
   - enabled: 1
-    path: Assets/PSH/Scenes/AlphaScene.unity
-    guid: ebae0c76a01a2ec4d8a1e2f5b763d05a
+    path: Assets/Scenes/Reproto.unity
+    guid: f15cb450fbb81874fb0cb97a9b52faa5
   m_configObjects: {}

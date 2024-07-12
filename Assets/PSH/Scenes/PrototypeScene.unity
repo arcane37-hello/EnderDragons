@@ -4849,7 +4849,10 @@ MonoBehaviour:
   pickaxePrefab: {fileID: 562134264}
   swordPrefab: {fileID: 337072451}
   bowPrefab: {fileID: 2122167324}
-  arrowPrefab: {fileID: 367185535788087701, guid: cbffaf196dd37c341907d940474f4ea0, type: 3}
+  arrowPrefab: {fileID: 3219109447335224082, guid: c1dc6ccf05e51fe499016e60ca592074, type: 3}
+  maxArrowForce: 50
+  minArrowForce: 10
+  maxAimingTime: 3
 --- !u!1 &1512796741
 GameObject:
   m_ObjectHideFlags: 0

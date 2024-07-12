@@ -4,36 +4,58 @@ using UnityEngine;
 
 public class WaterLayer : MonoBehaviour
 {
-    public LayerMask waterLayer; // Water 레이어를 선택할 수 있는 레이어 마스크
-    public LayerMask nonWaterLayer; // Water가 아닌 레이어를 선택할 수 있는 레이어 마스크
+    public LayerMask groundLayer; // Ground 레이어를 선택할 수 있는 레이어 마스크
 
-    void Update()
+    private void Start()
     {
-        // Water 레이어에 있는 모든 오브젝트를 찾기 위한 루프
-        var waterObjects = GameObject.FindObjectsOfType<Collider>();
+        RemoveOverlappingGroundObjects();
+    }
 
-        foreach (var waterObject in waterObjects)
+    private void RemoveOverlappingGroundObjects()
+    {
+        // 모든 Water 레이어의 Collider를 가져옵니다.
+        Collider[] waterColliders = GameObject.FindObjectsOfType<Collider>();
+
+        foreach (var waterCollider in waterColliders)
         {
-            // 현재 오브젝트가 Water 레이어에 있는지 확인
-            if (waterObject.gameObject.layer == LayerMask.NameToLayer("Water"))
+            if (waterCollider.gameObject.layer == LayerMask.NameToLayer("Water"))
             {
-                // Water 레이어의 오브젝트와 겹치는 다른 오브젝트를 찾기 위한 Collider 배열
-                Collider[] colliders = Physics.OverlapBox(
-                    waterObject.transform.position,
-                    waterObject.bounds.extents,
-                    waterObject.transform.rotation,
-                    nonWaterLayer
+                Bounds waterBounds = waterCollider.bounds;
+
+                // Water Collider의 Bounds와 Ground 레이어의 오브젝트의 Bounds의 교차 여부를 검사합니다.
+                Collider[] groundColliders = Physics.OverlapBox(
+                    waterBounds.center,
+                    waterBounds.extents,
+                    Quaternion.identity,
+                    groundLayer
                 );
 
-                foreach (var collider in colliders)
+                foreach (var groundCollider in groundColliders)
                 {
-                    // Water가 아닌 오브젝트를 제거
-                    if (collider.gameObject.layer != LayerMask.NameToLayer("Water"))
+                    if (groundCollider.gameObject.layer == LayerMask.NameToLayer("Ground"))
                     {
-                        Destroy(collider.gameObject);
+                        Bounds groundBounds = groundCollider.bounds;
+
+                        // 두 Bounds가 완전히 겹치는지 확인합니다.
+                        if (AreBoundsCompletelyOverlapping(waterBounds, groundBounds))
+                        {
+                            Debug.Log($"Removing {groundCollider.gameObject.name} at position {groundCollider.transform.position}");
+                            Destroy(groundCollider.gameObject);
+                        }
                     }
                 }
             }
         }
+    }
+
+    private bool AreBoundsCompletelyOverlapping(Bounds a, Bounds b)
+    {
+        // 두 Bounds가 서로 완전히 겹치는지 확인합니다.
+        return a.min.x <= b.min.x &&
+               a.max.x >= b.max.x &&
+               a.min.y <= b.min.y &&
+               a.max.y >= b.max.y &&
+               a.min.z <= b.min.z &&
+               a.max.z >= b.max.z;
     }
 }

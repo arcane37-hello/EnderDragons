@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8433694424839723642}
   - component: {fileID: 5069094627872008591}
   - component: {fileID: 5948786879528830535}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RockBlock
   m_TagString: Ground
   m_Icon: {fileID: 0}

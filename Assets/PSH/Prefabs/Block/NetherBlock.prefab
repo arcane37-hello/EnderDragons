@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3620561129247475183}
   - component: {fileID: 4882038606002114682}
   - component: {fileID: 4471222987916168909}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NetherBlock
   m_TagString: Ground
   m_Icon: {fileID: 0}

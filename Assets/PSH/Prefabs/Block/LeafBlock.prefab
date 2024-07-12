@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8419115106111180353}
   - component: {fileID: 4093733479587871086}
   - component: {fileID: 4487282982574185046}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeafBlock
   m_TagString: Ground
   m_Icon: {fileID: 0}

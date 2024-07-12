@@ -2508,8 +2508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904689e0ef23bf14e9efe51466ea70fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainCamera: {fileID: 704682926}
-  SecondCamera: {fileID: 1604952651}
+  MainCamera: {fileID: 0}
+  SecondCamera: {fileID: 0}
   SecondCameraPosition: {fileID: 0}
 --- !u!1 &739350642
 GameObject:
@@ -4273,8 +4273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276e8ae7d50848f4690a055b795ef3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 3
-  RunSpeed: 8
+  MoveSpeed: 2
+  RunSpeed: 4
   yVelocity: 0
   jumpPower: 12
   isJumping: 0
@@ -4415,7 +4415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 704682926}
   SecondCamera: {fileID: 1604952651}
-  SecondCameraPosition: {fileID: 328507408}
+  SecondCameraPosition: {fileID: 0}
 --- !u!1 &1376560628
 GameObject:
   m_ObjectHideFlags: 0
@@ -4827,6 +4827,7 @@ GameObject:
   - component: {fileID: 1604952651}
   - component: {fileID: 1604952650}
   - component: {fileID: 1604952652}
+  - component: {fileID: 1604952653}
   m_Layer: 0
   m_Name: SecondCamera
   m_TagString: MainCamera
@@ -4922,6 +4923,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
   playerBody: {fileID: 1329015197}
+--- !u!114 &1604952653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604952648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f949dbdc4b44140bbe909c42f3f25e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
+  rotationSpeed: 5
 --- !u!1 &1610333437
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,135 @@
+
+// 카메라가 고정됨
+//using UnityEngine;
+
+//public class CameraSwitcher : MonoBehaviour
+//{
+//    public Camera firstPersonCamera;
+//    public Camera thirdPersonCamera;
+//    public Vector3 thirdPersonOffset = new Vector3(0, 2, -4); // 3인칭 카메라 오프셋
+//    private bool isThirdPerson = false;
+//    private PlayerMove playerMove;
+
+//    void Start()
+//    {
+//        playerMove = FindObjectOfType<PlayerMove>();
+//        thirdPersonCamera.enabled = false; // 시작 시 3인칭 카메라를 비활성화
+
+//        // 3인칭 카메라의 초기 위치 설정
+//        if (thirdPersonCamera != null && playerMove != null)
+//        {
+//            thirdPersonCamera.transform.position = playerMove.transform.position + thirdPersonOffset;
+//            thirdPersonCamera.transform.LookAt(playerMove.transform.position + Vector3.up * 1.5f);
+//        }
+//    }
+
+//    void Update()
+//    {
+//        if (Input.GetKeyDown(KeyCode.F5))
+//        {
+//            isThirdPerson = !isThirdPerson;
+//            SwitchCamera();
+//        }
+//    }
+
+//    void SwitchCamera()
+//    {
+//        if (isThirdPerson)
+//        {
+//            firstPersonCamera.enabled = false;
+//            thirdPersonCamera.enabled = true;
+//        }
+//        else
+//        {
+//            firstPersonCamera.enabled = true;
+//            thirdPersonCamera.enabled = false;
+//        }
+
+//        playerMove.mainCamera = isThirdPerson ? thirdPersonCamera : firstPersonCamera;
+//    }
+//}
+
+
+// 똑같이 어색
+//using UnityEngine;
+
+//public class CameSwitch : MonoBehaviour
+//{
+//    public Camera firstPersonCamera;
+//    public Camera thirdPersonCamera;
+//    public Transform thirdPersonCameraPosition;
+//    private bool isThirdPerson = false;
+//    private PlayerMove playerMove;
+
+//    void Start()
+//    {
+//        playerMove = FindObjectOfType<PlayerMove>();
+//    }
+
+//    void Update()
+//    {
+//        if (Input.GetKeyDown(KeyCode.F5))
+//        {
+//            isThirdPerson = !isThirdPerson;
+//            SwitchCamera();
+//        }
+//    }
+
+//    void SwitchCamera()
+//    {
+//        if (isThirdPerson)
+//        {
+//            firstPersonCamera.enabled = false;
+//            thirdPersonCamera.enabled = true;
+//        }
+//        else
+//        {
+//            firstPersonCamera.enabled = true;
+//            thirdPersonCamera.enabled = false;
+//        }
+
+//        playerMove.mainCamera = isThirdPerson ? thirdPersonCamera : firstPersonCamera;
+//    }
+//}
+
+////카메라 상하 전환시 시야 잘 잡힘. 다만 어색함
+//using UnityEngine;
+
+//public class CamSwitch : MonoBehaviour
+//{
+//    public Camera firstPersonCamera;
+//    public Camera thirdPersonCamera;
+//    public Transform thirdPersonCameraPosition;
+//    private bool isThirdPerson = false;
+
+//    void Update()
+//    {
+//        if (Input.GetKeyDown(KeyCode.F5))
+//        {
+//            isThirdPerson = !isThirdPerson;
+//            SwitchCamera();
+//        }
+//    }
+
+//    void SwitchCamera()
+//    {
+//        if (isThirdPerson)
+//        {
+//            firstPersonCamera.enabled = false;
+//            thirdPersonCamera.enabled = true;
+//            thirdPersonCamera.transform.position = thirdPersonCameraPosition.position;
+//            thirdPersonCamera.transform.rotation = thirdPersonCameraPosition.rotation;
+//        }
+//        else
+//        {
+//            firstPersonCamera.enabled = true;
+//            thirdPersonCamera.enabled = false;
+//        }
+//    }
+//}
+
+
+// 정상작동 카메라 전환 + 이동 가능 (상하 카메라 전환시 시야 벗어남)
 using UnityEngine;
 
 public class CamSwitch : MonoBehaviour

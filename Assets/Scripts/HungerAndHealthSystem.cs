@@ -1,5 +1,4 @@
-//// 체력 + 배고픔 + 음식회복 + 사망적용 + 적 데미지 입기(안됨) + 배고픔 풀일때, 체력 회복
-
+//// 체력 + 배고픔 + 음식회복 + 사망적용 + 적 데미지 입기 + 배고픔 풀일때, 체력 회복 + 게임오버 사진
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -11,18 +10,18 @@ public class HungerAndHealthSystem : MonoBehaviour
     [SerializeField]
     private Image[] healthIcons; // 체력 아이콘 배열
     [SerializeField]
-    private int foodRestoreAmount = 3; // 음식이 회복하는 배고픔의 양
+    private int foodRestoreAmount = 4; // 음식이 회복하는 배고픔의 양
     [SerializeField]
     private int healthRestoreAmount = 1; // 배고픔이 최대일 때 회복하는 체력의 양
     [SerializeField]
-    private float healthRestoreInterval = 5f; // 배고픔이 최대일 때 체력 회복 간격
+    private float healthRestoreInterval = 1f; // 배고픔이 최대일 때 체력 회복 간격
 
     private int currentHunger; // 현재 배고픔
     private int currentHealth; // 현재 체력
 
     private float hungerTimer = 0f; // 배고픔 타이머
     private float healthTimer = 0f; // 체력 타이머
-    private float hungerDecreaseInterval = 2f; // 배고픔 감소 간격
+    private float hungerDecreaseInterval = 3f; // 배고픔 감소 간격
     private float healthDecreaseInterval = 1f; // 체력 감소 간격
 
     private bool isFoodSelected = false; // 음식이 선택되었는지 여부
@@ -79,6 +78,19 @@ public class HungerAndHealthSystem : MonoBehaviour
         if (isFoodSelected && Input.GetMouseButtonDown(1)) // 마우스 오른쪽 버튼 클릭
         {
             UseFood();
+        }
+    }
+    public void TakeDamage(int damage)
+    {
+        if (currentHealth > 0)
+        {
+            currentHealth -= damage;
+            healthIcons[currentHealth].enabled = false;
+
+            if (currentHealth <= 0)
+            {
+                GameOver();
+            }
         }
     }
 
@@ -190,6 +202,507 @@ public class HungerAndHealthSystem : MonoBehaviour
         }
     }
 }
+
+
+//// 체력 + 배고픔 + 음식회복 + 사망적용 + 적 데미지 입기 +배고픔 풀일때, 체력 회복(안됨) + 게임오버 사진
+//using UnityEngine;
+//using UnityEngine.UI;
+
+//public class HungerAndHealthSystem : MonoBehaviour
+//{
+//    [SerializeField]
+//    private Image[] hungerIcons; // 배고픔 아이콘 배열
+//    [SerializeField]
+//    private Image[] healthIcons; // 체력 아이콘 배열
+//    [SerializeField]
+//    private int foodRestoreAmount = 3; // 음식이 회복하는 배고픔의 양
+
+//    private int currentHunger; // 현재 배고픔
+//    private int currentHealth; // 현재 체력
+
+//    private float hungerTimer = 0f; // 배고픔 타이머
+//    private float healthTimer = 0f; // 체력 타이머
+//    private float hungerDecreaseInterval = 2f; // 배고픔 감소 간격
+//    private float healthDecreaseInterval = 1f; // 체력 감소 간격
+//    private float healthRecoverInterval = 5f; // 체력 회복 간격 (배고픔이 최대일 때)
+
+//    private bool isFoodSelected = false; // 음식이 선택되었는지 여부
+//    private bool isGameOver = false; // 게임 오버 상태
+
+//    private GameObject gameOverImage; // 게임 오버 이미지 오브젝트
+
+//    void Start()
+//    {
+//        currentHunger = hungerIcons.Length; // 초기 배고픔을 최대값으로 설정
+//        currentHealth = healthIcons.Length; // 초기 체력을 최대값으로 설정
+//    }
+
+//    void Update()
+//    {
+//        if (isGameOver)
+//            return;
+
+//        hungerTimer += Time.deltaTime;
+
+//        if (hungerTimer >= hungerDecreaseInterval)
+//        {
+//            hungerTimer = 0f;
+//            DecreaseHunger();
+//        }
+
+//        if (currentHunger == 0)
+//        {
+//            healthTimer += Time.deltaTime;
+
+//            if (healthTimer >= healthDecreaseInterval)
+//            {
+//                healthTimer = 0f;
+//                DecreaseHealth();
+//            }
+//        }
+
+//        if (Input.GetKeyDown(KeyCode.Alpha9))
+//        {
+//            isFoodSelected = true;
+//        }
+
+//        if (isFoodSelected && Input.GetMouseButtonDown(1))
+//        {
+//            UseFood();
+//        }
+//    }
+
+//    public void TakeDamage(int damage)
+//    {
+//        if (currentHealth > 0)
+//        {
+//            currentHealth -= damage;
+//            healthIcons[currentHealth].enabled = false;
+
+//            if (currentHealth <= 0)
+//            {
+//                GameOver();
+//            }
+//        }
+//    }
+
+//    void DecreaseHunger()
+//    {
+//        if (currentHunger > 0)
+//        {
+//            currentHunger--;
+//            hungerIcons[currentHunger].enabled = false;
+//        }
+//    }
+
+//    void DecreaseHealth()
+//    {
+//        if (currentHealth > 0)
+//        {
+//            currentHealth--;
+//            healthIcons[currentHealth].enabled = false;
+
+//            if (currentHealth == 0)
+//            {
+//                GameOver();
+//            }
+//        }
+//    }
+//    void RecoverHealth()
+//    {
+//        if (currentHealth < healthIcons.Length)
+//        {
+//            currentHealth++;
+//            healthIcons[currentHealth - 1].enabled = true;
+//        }
+//    }
+//    void UseFood()
+//    {
+//        int newHunger = currentHunger + foodRestoreAmount;
+//        for (int i = currentHunger; i < Mathf.Min(newHunger, hungerIcons.Length); i++)
+//        {
+//            hungerIcons[i].enabled = true;
+//        }
+//        currentHunger = Mathf.Min(newHunger, hungerIcons.Length);
+
+//        // 음식을 사용한 후 음식을 선택되지 않은 상태로 만듭니다. 
+//        isFoodSelected = false;
+//    }
+
+//    void GameOver()
+//    {
+//        isGameOver = true;
+
+//        // Resources 폴더에서 게임 오버 이미지를 로드합니다.
+//        Texture2D gameOverTexture = Resources.Load<Texture2D>("GameOverImage");
+//        if (gameOverTexture != null)
+//        {
+//            // Canvas를 찾거나 생성합니다.
+//            Canvas canvas = FindObjectOfType<Canvas>();
+//            if (canvas == null)
+//            {
+//                GameObject canvasObject = new GameObject("Canvas");
+//                canvas = canvasObject.AddComponent<Canvas>();
+//                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+//                canvasObject.AddComponent<CanvasScaler>();
+//                canvasObject.AddComponent<GraphicRaycaster>();
+//            }
+
+//            // Image 오브젝트를 생성하여 게임 오버 이미지를 설정합니다.
+//            gameOverImage = new GameObject("GameOverImage");
+//            gameOverImage.transform.SetParent(canvas.transform);
+//            RectTransform rectTransform = gameOverImage.AddComponent<RectTransform>();
+//            rectTransform.sizeDelta = new Vector2(1920, 1080); // 이미지 크기 설정
+//            rectTransform.anchoredPosition = Vector2.zero; // 이미지 위치 설정
+
+//            Image image = gameOverImage.AddComponent<Image>();
+//            image.sprite = Sprite.Create(gameOverTexture, new Rect(0, 0, gameOverTexture.width, gameOverTexture.height), new Vector2(0.5f, 0.5f));
+//        }
+
+//        Time.timeScale = 0; // 게임 일시정지
+//    }
+//}
+
+//// 적이 공격성공 하지만(( 배고픔이 최대인데 체력 안오름
+//using UnityEngine;
+//using UnityEngine.UI;
+
+//public class HungerAndHealthSystem : MonoBehaviour
+//{
+//    [SerializeField]
+//    private Image[] hungerIcons;
+//    [SerializeField]
+//    private Image[] healthIcons;
+//    [SerializeField]
+//    private int foodRestoreAmount = 3;
+
+
+//    private int currentHunger;
+//    private int currentHealth;
+
+//    private float hungerTimer = 0f;
+//    private float healthTimer = 0f;
+//    private float hungerDecreaseInterval = 2f;
+//    private float healthDecreaseInterval = 1f;
+
+//    private bool isFoodSelected = false;
+//    private bool isGameOver = false;
+
+//    private GameObject gameOverImage;
+
+//    void Start()
+//    {
+//        currentHunger = hungerIcons.Length;
+//        currentHealth = healthIcons.Length;
+//    }
+
+//    void Update()
+//    {
+//        if (isGameOver)
+//            return;
+
+//        hungerTimer += Time.deltaTime;
+
+//        if (hungerTimer >= hungerDecreaseInterval)
+//        {
+//            hungerTimer = 0f;
+//            DecreaseHunger();
+//        }
+
+//        if (currentHunger == 0)
+//        {
+//            healthTimer += Time.deltaTime;
+
+//            if (healthTimer >= healthDecreaseInterval)
+//            {
+//                healthTimer = 0f;
+//                DecreaseHealth();
+//            }
+//        }
+
+//        if (Input.GetKeyDown(KeyCode.Alpha9))
+//        {
+//            isFoodSelected = true;
+//        }
+
+//        if (isFoodSelected && Input.GetMouseButtonDown(1))
+//        {
+//            UseFood();
+//        }
+//    }
+
+//    public void TakeDamage(int damage)
+//    {
+//        if (currentHealth > 0)
+//        {
+//            currentHealth -= damage;
+//            healthIcons[currentHealth].enabled = false;
+
+//            if (currentHealth <= 0)
+//            {
+//                GameOver();
+//            }
+//        }
+//    }
+
+//    void DecreaseHunger()
+//    {
+//        if (currentHunger > 0)
+//        {
+//            currentHunger--;
+//            hungerIcons[currentHunger].enabled = false;
+//        }
+//    }
+
+//    void DecreaseHealth()
+//    {
+//        if (currentHealth > 0)
+//        {
+//            currentHealth--;
+//            healthIcons[currentHealth].enabled = false;
+
+//            if (currentHealth == 0)
+//            {
+//                GameOver();
+//            }
+//        }
+//    }
+
+//    void UseFood()
+//    {
+//        int newHunger = currentHunger + foodRestoreAmount;
+//        for (int i = currentHunger; i < Mathf.Min(newHunger, hungerIcons.Length); i++)
+//        {
+//            hungerIcons[i].enabled = true;
+//        }
+//        currentHunger = Mathf.Min(newHunger, hungerIcons.Length);
+//        isFoodSelected = true;
+//    }
+
+//    void GameOver()
+//    {
+//        isGameOver = true;
+
+//        Texture2D gameOverTexture = Resources.Load<Texture2D>("GameOverImage");
+//        if (gameOverTexture != null)
+//        {
+//            Canvas canvas = FindObjectOfType<Canvas>();
+//            if (canvas == null)
+//            {
+//                GameObject canvasObject = new GameObject("Canvas");
+//                canvas = canvasObject.AddComponent<Canvas>();
+//                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+//                canvasObject.AddComponent<CanvasScaler>();
+//                canvasObject.AddComponent<GraphicRaycaster>();
+//            }
+
+//            gameOverImage = new GameObject("GameOverImage");
+//            gameOverImage.transform.SetParent(canvas.transform);
+//            RectTransform rectTransform = gameOverImage.AddComponent<RectTransform>();
+//            rectTransform.sizeDelta = new Vector2(1920, 1080);
+//            rectTransform.anchoredPosition = Vector2.zero;
+
+//            Image image = gameOverImage.AddComponent<Image>();
+//            image.sprite = Sprite.Create(gameOverTexture, new Rect(0, 0, gameOverTexture.width, gameOverTexture.height), new Vector2(0.5f, 0.5f));
+//        }
+
+//        Time.timeScale = 0;
+//    }
+//}
+
+
+////// 체력 + 배고픔 + 음식회복 + 사망적용 + 적 데미지 입기(안됨) + 배고픔 풀일때, 체력 회복
+
+//using UnityEngine;
+//using UnityEngine.UI;
+//using System.Collections;
+
+//public class HungerAndHealthSystem : MonoBehaviour
+//{
+//    [SerializeField]
+//    private Image[] hungerIcons; // 배고픔 아이콘 배열
+//    [SerializeField]
+//    private Image[] healthIcons; // 체력 아이콘 배열
+//    [SerializeField]
+//    private int foodRestoreAmount = 3; // 음식이 회복하는 배고픔의 양
+//    [SerializeField]
+//    private int healthRestoreAmount = 1; // 배고픔이 최대일 때 회복하는 체력의 양
+//    [SerializeField]
+//    private float healthRestoreInterval = 5f; // 배고픔이 최대일 때 체력 회복 간격
+
+//    private int currentHunger; // 현재 배고픔
+//    private int currentHealth; // 현재 체력
+
+//    private float hungerTimer = 0f; // 배고픔 타이머
+//    private float healthTimer = 0f; // 체력 타이머
+//    private float hungerDecreaseInterval = 2f; // 배고픔 감소 간격
+//    private float healthDecreaseInterval = 1f; // 체력 감소 간격
+
+//    private bool isFoodSelected = false; // 음식이 선택되었는지 여부
+//    private bool isGameOver = false; // 게임 오버 상태
+//    private bool isTakingDamage = false; // 적으로부터 피해를 받고 있는지 여부
+
+//    private GameObject gameOverImage; // 게임 오버 이미지 오브젝트
+
+//    void Start()
+//    {
+//        currentHunger = hungerIcons.Length; // 초기 배고픔을 최대값으로 설정
+//        currentHealth = healthIcons.Length; // 초기 체력을 최대값으로 설정
+//    }
+
+//    void Update()
+//    {
+//        if (isGameOver)
+//            return;
+
+//        hungerTimer += Time.deltaTime;
+
+//        if (hungerTimer >= hungerDecreaseInterval)
+//        {
+//            hungerTimer = 0f;
+//            DecreaseHunger();
+//        }
+
+//        if (currentHunger == 0)
+//        {
+//            healthTimer += Time.deltaTime;
+
+//            if (healthTimer >= healthDecreaseInterval)
+//            {
+//                healthTimer = 0f;
+//                DecreaseHealth();
+//            }
+//        }
+//        else if (currentHunger == hungerIcons.Length) // 배고픔이 최대치일 때
+//        {
+//            healthTimer += Time.deltaTime;
+
+//            if (healthTimer >= healthRestoreInterval)
+//            {
+//                healthTimer = 0f;
+//                IncreaseHealth();
+//            }
+//        }
+
+//        if (Input.GetKeyDown(KeyCode.Alpha9))
+//        {
+//            isFoodSelected = true;
+//        }
+
+//        if (isFoodSelected && Input.GetMouseButtonDown(1)) // 마우스 오른쪽 버튼 클릭
+//        {
+//            UseFood();
+//        }
+//    }
+
+//    void DecreaseHunger()
+//    {
+//        if (currentHunger > 0)
+//        {
+//            currentHunger--;
+//            hungerIcons[currentHunger].enabled = false;
+//        }
+//    }
+
+//    void DecreaseHealth()
+//    {
+//        if (currentHealth > 0)
+//        {
+//            currentHealth--;
+//            healthIcons[currentHealth].enabled = false;
+
+//            if (currentHealth == 0)
+//            {
+//                GameOver();
+//            }
+//        }
+//    }
+
+//    void IncreaseHealth()
+//    {
+//        int newHealth = currentHealth + healthRestoreAmount;
+//        for (int i = currentHealth; i < Mathf.Min(newHealth, healthIcons.Length); i++)
+//        {
+//            healthIcons[i].enabled = true;
+//        }
+//        currentHealth = Mathf.Min(newHealth, healthIcons.Length);
+//    }
+
+//    void UseFood()
+//    {
+//        int newHunger = currentHunger + foodRestoreAmount;
+//        for (int i = currentHunger; i < Mathf.Min(newHunger, hungerIcons.Length); i++)
+//        {
+//            hungerIcons[i].enabled = true;
+//        }
+//        currentHunger = Mathf.Min(newHunger, hungerIcons.Length);
+
+//        // 음식을 사용한 후 음식을 선택되지 않은 상태로 만듭니다.
+//        isFoodSelected = false;
+//    }
+
+//    void GameOver()
+//    {
+//        isGameOver = true;
+
+//        // Resources 폴더에서 게임 오버 이미지를 로드합니다.
+//        Texture2D gameOverTexture = Resources.Load<Texture2D>("GameOverImage");
+//        if (gameOverTexture != null)
+//        {
+//            // Canvas를 찾거나 생성합니다.
+//            Canvas canvas = FindObjectOfType<Canvas>();
+//            if (canvas == null)
+//            {
+//                GameObject canvasObject = new GameObject("Canvas");
+//                canvas = canvasObject.AddComponent<Canvas>();
+//                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+//                canvasObject.AddComponent<CanvasScaler>();
+//                canvasObject.AddComponent<GraphicRaycaster>();
+//            }
+
+//            // Image 오브젝트를 생성하여 게임 오버 이미지를 설정합니다.
+//            gameOverImage = new GameObject("GameOverImage");
+//            gameOverImage.transform.SetParent(canvas.transform);
+//            RectTransform rectTransform = gameOverImage.AddComponent<RectTransform>();
+//            rectTransform.sizeDelta = new Vector2(1920, 1080); // 이미지 크기 설정
+//            rectTransform.anchoredPosition = Vector2.zero; // 이미지 위치 설정
+
+//            Image image = gameOverImage.AddComponent<Image>();
+//            image.sprite = Sprite.Create(gameOverTexture, new Rect(0, 0, gameOverTexture.width, gameOverTexture.height), new Vector2(0.5f, 0.5f));
+//        }
+
+//        Time.timeScale = 0; // 게임 일시정지
+//    }
+
+//    private void OnTriggerEnter(Collider other)
+//    {
+//        if (other.gameObject.CompareTag("Enemy"))
+//        {
+//            // 적과 접촉 시 피해를 받기 시작
+//            StartCoroutine(TakeDamageOverTime());
+//        }
+//    }
+
+//    private void OnTriggerExit(Collider other)
+//    {
+//        if (other.gameObject.CompareTag("Enemy"))
+//        {
+//            // 적과 접촉이 끝나면 피해를 중단
+//            StopCoroutine(TakeDamageOverTime());
+//            isTakingDamage = false;
+//        }
+//    }
+
+//    private IEnumerator TakeDamageOverTime()
+//    {
+//        isTakingDamage = true;
+//        while (isTakingDamage && !isGameOver)
+//        {
+//            DecreaseHealth();
+//            yield return new WaitForSeconds(1f);
+//        }
+//    }
+//}
 
 
 

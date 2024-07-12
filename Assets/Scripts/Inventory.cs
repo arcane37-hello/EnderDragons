@@ -95,7 +95,7 @@ public class Inventory : MonoBehaviour
         }
        
         Cursor.lockState = CursorLockMode.Locked; // 마우스 커서 비활성화
-        Cursor.visible = false;
+        Cursor.visible = true;
         //Debug.Log("Game Resumed");
     }
     //    public void InventoryUI

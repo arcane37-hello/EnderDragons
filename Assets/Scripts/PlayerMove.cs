@@ -183,8 +183,8 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     // 플레이어 속도랑 방향
-    public float MoveSpeed = 2.0f;
-    public float RunSpeed = 4.0f;
+    public float MoveSpeed = 3.0f;
+    public float RunSpeed = 7.0f;
 
     // 캐릭터 컨트롤러 변수
     CharacterController cc;

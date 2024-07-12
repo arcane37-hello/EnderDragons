@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5946768226851675683}
   - component: {fileID: 2999673497075887807}
   - component: {fileID: 8710480953857798846}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WoodBlock
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64ea46e8302a4ed448da125590fda809, type: 2}
+  - {fileID: 2100000, guid: d9b8206ffd8e96a4eb553271c7e48025, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

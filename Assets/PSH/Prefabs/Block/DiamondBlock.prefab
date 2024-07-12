@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7158583128110859890}
   - component: {fileID: 4378376003845698597}
   - component: {fileID: 144763966045867179}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DiamondBlock
   m_TagString: Ground
   m_Icon: {fileID: 0}

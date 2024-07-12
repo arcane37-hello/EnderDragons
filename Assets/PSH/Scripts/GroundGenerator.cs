@@ -30,11 +30,11 @@ public class GroundGenerator : MonoBehaviour
 
         Debug.Log($"Lake start position: ({lakeStartX}, {lakeStartZ})");
 
-        // 물 큐브를 먼저 생성
-        GenerateWater(lakeStartX, lakeStartZ);
+        // 땅 큐브를 먼저 생성
+        GenerateTerrain(startPosition);
 
-        // 땅 큐브를 생성
-        GenerateTerrain(startPosition, lakeStartX, lakeStartZ);
+        // 물 큐브를 생성
+        GenerateWater(lakeStartX, lakeStartZ);
 
         Debug.Log("Ground generation completed.");
     }
@@ -52,14 +52,10 @@ public class GroundGenerator : MonoBehaviour
                 // 물 큐브의 위치 설정 (y는 땅 위에서만)
                 Vector3 waterPosition = new Vector3(x, 1, z);
 
-                // 땅 위에서만 물이 생성될 수 있도록
-                if (!IsPositionOnGround(x, z))
-                {
-                    // 물 큐브 인스턴스 생성
-                    GameObject waterCube = Instantiate(waterCubePrefab, waterPosition, Quaternion.identity);
-                    waterCube.transform.SetParent(transform); // 땅 생성기(GroundGenerator)의 자식으로 설정
-                    Debug.Log($"Water cube instantiated at ({waterPosition.x}, {waterPosition.y}, {waterPosition.z})");
-                }
+                // 물 큐브 인스턴스 생성
+                GameObject waterCube = Instantiate(waterCubePrefab, waterPosition, Quaternion.identity);
+                waterCube.transform.SetParent(transform); // 땅 생성기(GroundGenerator)의 자식으로 설정
+                Debug.Log($"Water cube instantiated at ({waterPosition.x}, {waterPosition.y}, {waterPosition.z})");
             }
         }
 
@@ -67,7 +63,7 @@ public class GroundGenerator : MonoBehaviour
     }
 
     // 땅 큐브 생성 메서드
-    void GenerateTerrain(Vector3 startPosition, int lakeStartX, int lakeStartZ)
+    void GenerateTerrain(Vector3 startPosition)
     {
         Debug.Log("Generating terrain...");
 
@@ -76,24 +72,20 @@ public class GroundGenerator : MonoBehaviour
         {
             for (int z = 0; z < groundLength; z++)
             {
-                // 물이 있는 위치에는 땅 큐브 생성하지 않음
-                if (!IsPositionInLake(x, z, lakeStartX, lakeStartZ))
+                // Perlin Noise를 이용해 높이 결정
+                float heightNoise = Mathf.PerlinNoise((float)x / 10f, (float)z / 10f); // Perlin Noise 값 계산
+                int height = Mathf.RoundToInt(heightNoise * (groundHeight - 1)) + 1; // 높이 계산 (1 ~ groundHeight)
+
+                for (int y = 0; y < height; y++)
                 {
-                    // Perlin Noise를 이용해 높이 결정
-                    float heightNoise = Mathf.PerlinNoise((float)x / 10f, (float)z / 10f); // Perlin Noise 값 계산
-                    int height = Mathf.RoundToInt(heightNoise * (groundHeight - 1)) + 1; // 높이 계산 (1 ~ groundHeight)
+                    // 각 큐브의 위치 계산
+                    Vector3 groundPosition = startPosition + new Vector3(x, y, z);
 
-                    for (int y = 0; y < height; y++)
-                    {
-                        // 각 큐브의 위치 계산
-                        Vector3 groundPosition = startPosition + new Vector3(x, y, z);
-
-                        // 큐브 인스턴스 생성
-                        GameObject cube = Instantiate(cubePrefab, groundPosition, Quaternion.identity);
-                        cube.transform.SetParent(transform); // 땅 생성기(GroundGenerator)의 자식으로 설정
-                        cube.tag = "Ground"; // 태그 할당
-                        Debug.Log($"Ground cube instantiated at ({groundPosition.x}, {groundPosition.y}, {groundPosition.z})");
-                    }
+                    // 큐브 인스턴스 생성
+                    GameObject cube = Instantiate(cubePrefab, groundPosition, Quaternion.identity);
+                    cube.transform.SetParent(transform); // 땅 생성기(GroundGenerator)의 자식으로 설정
+                    cube.tag = "Ground"; // 태그 할당
+                    // Debug.Log($"Ground cube instantiated at ({groundPosition.x}, {groundPosition.y}, {groundPosition.z})");
                 }
             }
         }

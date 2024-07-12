@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8433694424839723642}
   - component: {fileID: 5069094627872008591}
   - component: {fileID: 5948786879528830535}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RockBlock
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f99ecae1ac8585246a1f45e32f1650a7, type: 2}
+  - {fileID: 2100000, guid: 81876006e185b2b4f9f6424d06e7754a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

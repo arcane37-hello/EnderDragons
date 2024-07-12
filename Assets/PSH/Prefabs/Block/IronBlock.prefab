@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3858916245269867228}
   - component: {fileID: 7730910004776003646}
   - component: {fileID: 2883433429225148731}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IronBlock
   m_TagString: Ground
   m_Icon: {fileID: 0}

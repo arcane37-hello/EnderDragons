@@ -7,7 +7,6 @@ using UnityEditor;
 
 public class Inventory : MonoBehaviour
 {
-    public GameObject GameOverUI;
     public GameObject Inventory1;
     public bool isInventoryOpen = false;
     public GameObject blackbackground; // 어두운 배경
@@ -71,8 +70,8 @@ public class Inventory : MonoBehaviour
                     blackbackground.SetActive(true); // 배경 활성화
                 }
                
-                Cursor.lockState = CursorLockMode.None; // 마우스 커서 활성화
-                Cursor.visible = true;
+                //Cursor.lockState = CursorLockMode.None; // 마우스 커서 활성화
+                //Cursor.visible = true;
                 //Debug.Log("Game Paused");
             }
             else
@@ -94,8 +93,8 @@ public class Inventory : MonoBehaviour
             blackbackground.SetActive(false); // 배경 비활성화
         }
        
-        Cursor.lockState = CursorLockMode.Locked; // 마우스 커서 비활성화
-        Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.Locked; // 마우스 커서 비활성화
+        //Cursor.visible = true;
         //Debug.Log("Game Resumed");
     }
     //    public void InventoryUI

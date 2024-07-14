@@ -137,12 +137,15 @@ public class CamSwitch : MonoBehaviour
     public Camera MainCamera;
     public Camera SecondCamera;
     public Transform SecondCameraPosition;
+    public bool isMainCamera = true;
 
     void Start()
     {
         SecondCamera.transform.position = SecondCameraPosition.position;
         SecondCamera.transform.rotation = SecondCameraPosition.rotation;
         SwitchToFirstPerson();
+
+        //SecondCamera.gameObject.SetActive(true);
     }
 
     void Update()
@@ -160,16 +163,17 @@ public class CamSwitch : MonoBehaviour
         }
     }
 
-    void SwitchToFirstPerson()
-    {
-        MainCamera.gameObject.SetActive(true);
-        SecondCamera.gameObject.SetActive(false);
-    }
+   
 
     void SwitchToThirdPerson()
     {
         MainCamera.gameObject.SetActive(false);
         SecondCamera.gameObject.SetActive(true);
+    }
+    void SwitchToFirstPerson()
+    {
+        MainCamera.gameObject.SetActive(true);
+        SecondCamera.gameObject.SetActive(false);
     }
 }
 

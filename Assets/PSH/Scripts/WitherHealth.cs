@@ -12,8 +12,6 @@ public class WitherHealth : MonoBehaviour
 
     public float summonInterval = 5f; // 오브젝트를 소환할 주기 (초)
 
-    private bool isInPhaseTwo = false; // 보스의 두 번째 단계 여부
-
     void Start()
     {
         currentHealth = maxHealth; // 보스의 체력을 최대 체력으로 초기화
@@ -22,10 +20,10 @@ public class WitherHealth : MonoBehaviour
 
     void Update()
     {
-        // 보스의 체력이 50% 이하로 떨어지면 두 번째 단계로 전환
-        if (currentHealth <= maxHealth / 2 && !isInPhaseTwo)
+        // 보스의 체력이 0 이하로 떨어지면 죽음 처리
+        if (currentHealth <= 0)
         {
-            EnterPhaseTwo();
+            Die();
         }
     }
 
@@ -38,16 +36,6 @@ public class WitherHealth : MonoBehaviour
         }
     }
 
-    void EnterPhaseTwo()
-    {
-        isInPhaseTwo = true;
-        Debug.Log("WitherBoss has entered Phase Two!");
-
-        // 두 번째 단계에서의 행동 패턴을 추가할 수 있습니다.
-        // 5초마다 소환 패턴 시작
-        StartCoroutine(SummonPattern());
-    }
-
     void Die()
     {
         Debug.Log("WitherBoss has been defeated!");
@@ -58,12 +46,10 @@ public class WitherHealth : MonoBehaviour
 
     IEnumerator AttackPattern()
     {
-        while (!isInPhaseTwo)
+        while (true)
         {
-            yield return null; // 무한 루프, Phase Two로의 전환을 위해 대기
+            yield return null; // 무한 루프, 공격 패턴 실행
         }
-
-        // Phase Two에서는 5초마다 소환 패턴이 활성화됨
     }
 
     IEnumerator SummonPattern()

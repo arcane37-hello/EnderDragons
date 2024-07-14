@@ -689,6 +689,8 @@ MonoBehaviour:
   - {fileID: 812321033}
   - {fileID: 91822476}
   foodRestoreAmount: 3
+  healthRestoreAmount: 1
+  healthRestoreInterval: 1
 --- !u!1 &137421972
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +942,7 @@ GameObject:
   - component: {fileID: 239641758}
   m_Layer: 6
   m_Name: PlayerLeftLegs
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1630,7 +1632,7 @@ GameObject:
   - component: {fileID: 402465761}
   m_Layer: 6
   m_Name: PlayerHead
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1647,7 +1649,8 @@ Transform:
   m_LocalPosition: {x: 0.5000001, y: 1.8499999, z: 0}
   m_LocalScale: {x: 1.4000003, y: 0.7, z: 1.4000001}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 742862239}
   m_Father: {fileID: 1329015197}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &402465761
@@ -2689,7 +2692,7 @@ GameObject:
   - component: {fileID: 739350644}
   m_Layer: 6
   m_Name: PlayerRightArm
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2780,6 +2783,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739350642}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &742862238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 742862239}
+  m_Layer: 0
+  m_Name: ArrowTurret
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &742862239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742862238}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.022, y: 0.026, z: 1.119}
+  m_LocalScale: {x: 0.71428555, y: 1.4285715, z: 0.7142857}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 402465760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &792145920
 GameObject:
   m_ObjectHideFlags: 0
@@ -3762,7 +3796,7 @@ GameObject:
   - component: {fileID: 1099722489}
   m_Layer: 6
   m_Name: PlayerLeftArm
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4355,11 +4389,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickaxePrefab: {fileID: 1745640162}
   swordPrefab: {fileID: 612001765}
-  bowPrefab: {fileID: 0}
-  arrowPrefab: {fileID: 0}
+  bowPrefab: {fileID: 3317823749142253822, guid: 8944030e4491349409bf3a19dd2bc8a4, type: 3}
+  arrowPrefab: {fileID: 3219109447335224082, guid: c1dc6ccf05e51fe499016e60ca592074, type: 3}
   maxArrowForce: 50
   minArrowForce: 10
   maxAimingTime: 3
+  arrowSpawnPoint: {fileID: 742862239}
 --- !u!114 &1329015189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4626,6 +4661,8 @@ MonoBehaviour:
   - {fileID: 812321033}
   - {fileID: 91822476}
   foodRestoreAmount: 3
+  healthRestoreAmount: 1
+  healthRestoreInterval: 1
 --- !u!1 &1376560628
 GameObject:
   m_ObjectHideFlags: 0
@@ -4640,7 +4677,7 @@ GameObject:
   - component: {fileID: 1376560630}
   m_Layer: 6
   m_Name: PlayerChest
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -27,6 +27,12 @@ public class Arrow : MonoBehaviour
                 return;
             }
 
+            // 충돌한 오브젝트의 태그를 체크하여 Missile 태그인 경우 처리하지 않습니다.
+            if(collision.gameObject.CompareTag("Missile"))
+            {
+                return;
+            }
+
             // Enemy 태그인 경우 몬스터에게 데미지를 입힙니다.
             if (collision.gameObject.CompareTag("Enemy"))
             {

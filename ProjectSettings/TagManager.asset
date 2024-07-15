@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - SecondCamera
   - WitherBoss
+  - Missile
   layers:
   - Default
   - TransparentFX

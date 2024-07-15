@@ -163,12 +163,12 @@ public class HungerAndHealthSystem : MonoBehaviour
     }
 
 
-    // 게임 다시 시작
-    void RetryGame()
-    {
-        Time.timeScale = 1; // 게임 일시정지 해제
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // 현재 씬 다시 로드
-    }
+    //// 게임 다시 시작
+    //void RetryGame()
+    //{
+    //    Time.timeScale = 1; // 게임 일시정지 해제
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // 현재 씬 다시 로드
+    //}
     // 메인 메뉴 복귀
     void GoToMainMenu()
     {

@@ -13,6 +13,8 @@ public class ESC : MonoBehaviour
     public Button resumeButton; // 계속하기 버튼
     public GameObject gameOverUI; // 게임 오버 UI 패널
 
+    public Button StartScene;
+
     private bool isPaused = false; // 일시 정지 상태를 추적하는 변수
 
     void Start()
@@ -66,6 +68,10 @@ public class ESC : MonoBehaviour
         if (resumeButton != null)
         {
             resumeButton.onClick.AddListener(ResumeGame);
+        } 
+        if (StartScene != null)
+        {
+            StartScene.onClick.AddListener(Title);
         }
     }
 
@@ -113,6 +119,15 @@ public class ESC : MonoBehaviour
             gameOverUI.SetActive(false);
         }
         Time.timeScale = 1f;
+    }
+    public void RestartGame()
+    {
+        // 업데이트 시간을 다시 1배율로 변경한다.
+        Time.timeScale = 1.0f;
+
+        //  현재 씬을 다시 시작한다.
+        SceneManager.LoadScene(1);
+
     }
 }
 

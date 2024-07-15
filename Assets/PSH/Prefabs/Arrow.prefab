@@ -148,3 +148,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionSound: {fileID: 0}
   destroyAfterNoCollisionDelay: 20
+  monsterDamageAmount: 10
+  witherBossDamageAmount: 10

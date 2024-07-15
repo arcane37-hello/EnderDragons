@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -337678703062210657}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,3 +148,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionSound: {fileID: 0}
   destroyAfterNoCollisionDelay: 20
+  monsterDamageAmount: 10
+  witherBossDamageAmount: 10

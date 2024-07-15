@@ -9,6 +9,7 @@ TagManager:
   - SecondCamera
   - WitherBoss
   - Missile
+  - Arrow
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,8 @@ public class Arrow : MonoBehaviour
 {
     public AudioClip collisionSound; // 충돌 사운드
     public float destroyAfterNoCollisionDelay = 20f; // 충돌이 없을 때 20초 후 삭제하는 시간
+    public int monsterDamageAmount = 10; // 몬스터에게 입히는 데미지
+    public int witherBossDamageAmount = 10; // 위더 보스에게 입히는 데미지
 
     private bool hasCollided = false; // 충돌 여부를 체크하는 플래그
 
@@ -19,6 +21,38 @@ public class Arrow : MonoBehaviour
     {
         if (!hasCollided)
         {
+            // 충돌한 오브젝트의 태그를 체크하여 Player 태그인 경우 처리하지 않습니다.
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                return;
+            }
+
+            // 충돌한 오브젝트의 태그를 체크하여 Missile 태그인 경우 처리하지 않습니다.
+            if(collision.gameObject.CompareTag("Missile"))
+            {
+                return;
+            }
+
+            // Enemy 태그인 경우 몬스터에게 데미지를 입힙니다.
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                MonsterHealth monsterHealth = collision.gameObject.GetComponent<MonsterHealth>();
+                if (monsterHealth != null)
+                {
+                    monsterHealth.TakeDamage(monsterDamageAmount);
+                }
+            }
+            // WitherBoss 태그인 경우 위더 보스에게 데미지를 입힙니다.
+            else if (collision.gameObject.CompareTag("WitherBoss"))
+            {
+                WitherHealth witherHealth = collision.gameObject.GetComponent<WitherHealth>();
+                if (witherHealth != null)
+                {
+                    witherHealth.TakeDamage(witherBossDamageAmount);
+                    Destroy(gameObject);
+                }
+            }
+
             HandleCollision(collision);
         }
     }

@@ -4,21 +4,38 @@ using UnityEngine;
 
 public class AttackMonster : MonoBehaviour
 {
-    public GameObject affectedObject; // 특정 오브젝트에만 적용할 대상 오브젝트를 설정하는 public 변수
+    public float damagePerClick = 2f; // 클릭당 입히는 기본 데미지
+    public float swordDamageBonus = 5f; // 칼이 활성화되었을 때 추가로 입히는 데미지
 
-    private int clickCount = 0;
-    private bool isObjectActive = true;
+    private GameObject affectedObject; // 특정 몬스터를 참조할 변수
+
+    private bool isSwordActive = false; // 칼이 활성화되었는지 여부
+
     private Rigidbody rb;
     private float moveForce = 5f;
     private float jumpForce = 5f;
 
     void Start()
     {
+        // 예제로 affectedObject를 Scene에서 "Enemy" 태그를 가진 첫 번째 오브젝트로 설정
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (enemies.Length > 0)
+        {
+            affectedObject = enemies[0];
+        }
+        else
+        {
+            Debug.LogError("No enemy found with 'Enemy' tag.");
+        }
+
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        // 칼이 활성화되었는지 여부 체크
+        isSwordActive = InventoryNumber.Instance.IsSwordActive();
+
         // 마우스 왼쪽 버튼 클릭 시 동작
         if (Input.GetMouseButtonDown(0))
         {
@@ -26,13 +43,24 @@ public class AttackMonster : MonoBehaviour
             GameObject clickedObject = GetClickedObject();
 
             // affectedObject가 설정되어 있고 클릭된 오브젝트가 affectedObject일 때만 동작
-            if (clickedObject != null && clickedObject == affectedObject && isObjectActive)
+            if (clickedObject != null && clickedObject == affectedObject)
             {
-                clickCount++;
-
-                // 클릭 횟수에 따라 다른 동작 수행
-                if (clickCount <= 10)
+                // 데미지 적용
+                float totalDamage = damagePerClick;
+                if (isSwordActive)
                 {
+                    totalDamage += swordDamageBonus;
+                }
+
+                // 이 부분에서 totalDamage를 int로 변환하여 사용합니다.
+                int damageInt = Mathf.RoundToInt(totalDamage);
+
+                // Enemy 태그를 가진 오브젝트에서 MonsterHealth 컴포넌트를 가져와서 데미지 적용
+                MonsterHealth monsterHealth = affectedObject.GetComponent<MonsterHealth>();
+                if (monsterHealth != null)
+                {
+                    monsterHealth.TakeDamage(damageInt);
+
                     // 오브젝트를 뒤로 밀어내기 (물리적 힘을 사용하여)
                     rb.AddForce(-transform.forward * moveForce, ForceMode.Impulse);
 
@@ -41,8 +69,7 @@ public class AttackMonster : MonoBehaviour
                 }
                 else
                 {
-                    // 오브젝트를 비활성화 (사라지게 함)
-                    gameObject.SetActive(false);
+                    Debug.LogError("Affected object does not have MonsterHealth component.");
                 }
             }
         }

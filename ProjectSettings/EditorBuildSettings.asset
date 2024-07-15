@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/PSH/Scenes/StartScene.unity
     guid: b7fbe3ba2ab00bc448faaabb4f735898
   - enabled: 1
-    path: Assets/PSH/Scenes/RealAlphaScene.unity
-    guid: 847eba6ec26011440ac8fbddb36268df
+    path: Assets/Scenes/Reproto.unity
+    guid: f15cb450fbb81874fb0cb97a9b52faa5
   - enabled: 1
     path: Assets/PSH/Scenes/BossMapScene.unity
     guid: fcefa154381a4c343bdcd3132bfdeb86

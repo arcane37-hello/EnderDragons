@@ -691,6 +691,7 @@ MonoBehaviour:
   foodRestoreAmount: 3
   healthRestoreAmount: 1
   healthRestoreInterval: 1
+  gameOverUI: {fileID: 0}
 --- !u!1 &137421972
 GameObject:
   m_ObjectHideFlags: 0
@@ -2492,6 +2493,7 @@ MonoBehaviour:
   MainCamera: {fileID: 0}
   SecondCamera: {fileID: 0}
   SecondCameraPosition: {fileID: 0}
+  isMainCamera: 1
 --- !u!1 &739350642
 GameObject:
   m_ObjectHideFlags: 0
@@ -4440,6 +4442,7 @@ MonoBehaviour:
   MainCamera: {fileID: 704682926}
   SecondCamera: {fileID: 1604952651}
   SecondCameraPosition: {fileID: 0}
+  isMainCamera: 1
 --- !u!114 &1329015200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4477,6 +4480,7 @@ MonoBehaviour:
   foodRestoreAmount: 3
   healthRestoreAmount: 1
   healthRestoreInterval: 1
+  gameOverUI: {fileID: 0}
 --- !u!1 &1376560628
 GameObject:
   m_ObjectHideFlags: 0
@@ -4697,7 +4701,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1380930260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0cecee7356ac034999664cfd8acb196, type: 3}
+  m_Script: {fileID: 11500000, guid: 72e196f44a4d1544a8e19d6431afef72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1434817514
@@ -5809,6 +5813,8 @@ MonoBehaviour:
   pausePanel: {fileID: 1026247974}
   blackbackground: {fileID: 1274816327}
   resumeButton: {fileID: 15559026}
+  gameOverUI: {fileID: 0}
+  StartScene: {fileID: 0}
 --- !u!4 &1901274011
 Transform:
   m_ObjectHideFlags: 0
@@ -5836,10 +5842,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd2df79db6f23046b25362217872ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverUI: {fileID: 0}
   Inventory1: {fileID: 832348755}
   isInventoryOpen: 0
-  blackbackground: {fileID: 1274816327}
+  Inventorybackground: {fileID: 0}
   isblackbackground: 0
 --- !u!1 &1923671633
 GameObject:

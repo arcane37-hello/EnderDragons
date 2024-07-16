@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/PSH/Scenes/StartScene.unity
     guid: b7fbe3ba2ab00bc448faaabb4f735898
   - enabled: 1
+    path: Assets/PSH/Scenes/BetaScene.unity
+    guid: 8600f96d2f2371f439efe7141d95776c
+  - enabled: 1
     path: Assets/PSH/Scenes/BossMapScene.unity
     guid: fcefa154381a4c343bdcd3132bfdeb86
   m_configObjects: {}

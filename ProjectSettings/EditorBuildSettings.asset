@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PSH/Scenes/BossMapScene.unity
     guid: fcefa154381a4c343bdcd3132bfdeb86
+  - enabled: 1
+    path: Assets/PSH/Scenes/EndingScene.unity
+    guid: 82e9daece141ef844bfac887a50bc4ef
   m_configObjects: {}

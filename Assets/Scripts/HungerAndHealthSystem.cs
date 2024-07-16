@@ -33,7 +33,6 @@ public class HungerAndHealthSystem : MonoBehaviour
 
     public GameObject gameOverUI; // 게임 오버 이미지 오브젝트
 
-    public GameObject 
 
     void Start()
     {

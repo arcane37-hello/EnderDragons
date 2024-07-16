@@ -8,6 +8,9 @@ public class InventoryNumber : MonoBehaviour
     public GameObject swordPrefab;
     public GameObject bowPrefab;
     public GameObject arrowPrefab;
+    public GameObject breadPrefab;
+    public GameObject grassPrefab;
+    public GameObject rockPrefab;
 
     private GameObject currentWeapon;
     private bool isBowActive = false;
@@ -53,18 +56,33 @@ public class InventoryNumber : MonoBehaviour
             isBowActive = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SwitchWeapon(grassPrefab);
+            isBowActive = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SwitchWeapon(rockPrefab);
+            isBowActive = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             SwitchWeapon(bowPrefab);
             isBowActive = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3) ||
-            Input.GetKeyDown(KeyCode.Alpha4) ||
-            Input.GetKeyDown(KeyCode.Alpha6) ||
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            SwitchWeapon(breadPrefab);
+            isBowActive = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6) ||
             Input.GetKeyDown(KeyCode.Alpha7) ||
             Input.GetKeyDown(KeyCode.Alpha8) ||
-            Input.GetKeyDown(KeyCode.Alpha9) ||
             Input.GetKeyDown(KeyCode.Alpha0))
         {
             DisableCurrentWeapon();

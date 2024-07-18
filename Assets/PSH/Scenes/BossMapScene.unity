@@ -2732,53 +2732,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739350642}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &744259645
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 744259647}
-  - component: {fileID: 744259646}
-  m_Layer: 0
-  m_Name: SummonMonster (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &744259646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744259645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3623324634ad46146a62a1fa97d575a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackCooldown: 5
-  missilePrefab: {fileID: 1551478348662921120, guid: c21784cdb1cef104d869169c7ba599bc, type: 3}
-  missileSpawnPoint: {fileID: 744259647}
---- !u!4 &744259647
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744259645}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.6, y: 5, z: -2.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &761026116
 GameObject:
   m_ObjectHideFlags: 0
@@ -4633,7 +4586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1175779771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5491,7 +5444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1405807278
 Transform:
   m_ObjectHideFlags: 0
@@ -6528,7 +6481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1718193172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7944,7 +7897,6 @@ SceneRoots:
   - {fileID: 1405807278}
   - {fileID: 1175779772}
   - {fileID: 1718193173}
-  - {fileID: 744259647}
   - {fileID: 397042216}
   - {fileID: 1323269902}
   - {fileID: 1165225447}

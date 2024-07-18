@@ -1,3 +1,216 @@
+// 알파에서 애니메이션 추가 2번째 시도 (새로운 ai 도움)
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
+using UnityEngine;
+
+public class PlayerMove : MonoBehaviour
+{
+    // 플레이어 속도랑 방향
+    public float MoveSpeed = 3.0f;
+    public float RunSpeed = 7.0f;
+
+    // 캐릭터 컨트롤러 변수
+    CharacterController cc;
+
+    // 중력 변수
+    float gravity = -20f;
+
+    // 수직 속력 변수
+    public float yVelocity = 0;
+
+    // 점프력 변수
+    public float jumpPower = 5f;
+
+    // 점프 확인 변수
+    public bool isJumping = false;
+
+    // 애니메이터
+    private Animator animator;
+
+    private void Start()
+    {
+        // 캐릭터 컨트롤러 컴포넌트 받아오기
+        cc = GetComponent<CharacterController>();
+        animator = transform.GetComponentInChildren<Animator>();
+    }
+
+    void Update()
+    {
+        // 플레이어 앞뒤, 좌우, 점프
+        float ws = Input.GetAxis("Horizontal");
+        float ad = Input.GetAxis("Vertical");
+
+        // 이동 방향 설정
+        Vector3 direction = new Vector3(ws, 0, ad);
+        direction.Normalize();
+
+        // 달리기 체크 ( ctrl 키 누르면 달리기)
+        bool isRunning = Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.W);
+        float currentSpeed = isRunning ? RunSpeed : MoveSpeed;
+
+        // 카메라 기준으로 방향 변환
+        direction = Camera.main.transform.TransformDirection(direction);
+        Vector3 horizontalMovement = direction * currentSpeed * Time.deltaTime;
+
+        // 캐릭터 수직속도에 중력값을 적용한다.
+        if (cc.isGrounded)
+        {
+            yVelocity = -1f; // 바닥에 있을 때 수직 속도를 약간 음수로 설정하여 붙어 있게 함
+            if (Input.GetButtonDown("Jump"))
+            {
+                // 캐릭터 수직 속도에 점프력 작용
+                yVelocity = jumpPower;
+                isJumping = true;
+            }
+        }
+        else
+        {
+            yVelocity += gravity * Time.deltaTime;
+        }
+
+        // 이동 속도에 맞춰 이동한다
+        Vector3 verticalMovement = Vector3.up * yVelocity * Time.deltaTime;
+        cc.Move(horizontalMovement + verticalMovement);
+
+        // 이동 중일 때만 애니메이션 재생
+        //if (horizontalMovement.magnitude > 0.1f || verticalMovement.magnitude > 0.1f)
+        //{
+        //    animator.SetBool("IsMoving", true);
+        //}
+        //else
+        //{
+        //    animator.SetBool("IsMoving", false);
+        //}
+
+        if (ws > 0.2f)
+        {
+            animator.SetTrigger("BackMove");
+        }
+        else if (ws < -0.2f)
+        {
+            animator.SetTrigger("BackMove");
+        }
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
+
+
+        //if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.1)
+        //    animator.CrossFade("walk");
+        //else
+        //    animator.CrossFade("idle");
+    }
+
+}
+
+
+
+//// 알파에서 애니메이션 추가 (((안됨)))
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+
+//public class PlayerMove : MonoBehaviour
+//{
+//    // 플레이어 속도랑 방향
+//    public float MoveSpeed = 3.0f;
+//    public float RunSpeed = 7.0f;
+
+//    // 캐릭터 컨트롤러 변수
+//    CharacterController cc;
+
+//    // 중력 변수
+//    float gravity = -20f;
+
+//    // 수직 속력 변수
+//    public float yVelocity = 0;
+
+//    // 점프력 변수
+//    public float jumpPower = 5f;
+
+//    // 점프 확인 변수
+//    public bool isJumping = false;
+
+//    // 애니메이터
+//    private Animator Foward;
+
+//    private void Start()
+//    {
+//        // 캐릭터 컨트롤러 컴포넌트 받아오기
+//        cc = GetComponent<CharacterController>();
+
+//        // 나에게 붙어있는  Animator 컴포넌트 가져오기
+//        Foward = GetComponent<Animator>();
+
+//        //// 애니메이터 컴포넌트 받아오기
+//        //animator = GetComponent<Animator>();
+//        //if (animator == null)
+//        //{
+//        //    Debug.LogError("Animator component not found on player.");
+//        //}
+//    }
+
+//    void Update()
+//    {
+//        // 플레이어 앞뒤, 좌우, 점프
+//        float ws = Input.GetAxis("Horizontal");
+//        float ad = Input.GetAxis("Vertical");
+
+//        // 이동 방향 설정
+//        Vector3 direction = new Vector3(ws, 0, ad);
+//        direction.Normalize();
+
+//        // 달리기 체크 ( ctrl 키 누르면 달리기)
+//        bool isRunning = Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.W);
+//        float currentSpeed = isRunning ? RunSpeed : MoveSpeed;
+
+//        // 카메라 기준으로 방향 변환
+//        direction = Camera.main.transform.TransformDirection(direction);
+//        Vector3 horizontalMovement = direction * currentSpeed * Time.deltaTime;
+
+//        // 캐릭터 수직속도에 중력값을 적용한다.
+//        if (cc.isGrounded)
+//        {
+//            yVelocity = -1f; // 바닥에 있을 때 수직 속도를 약간 음수로 설정하여 붙어 있게 함
+//            if (Input.GetButtonDown("Jump"))
+//            {
+//                // 캐릭터 수직 속도에 점프력 작용
+//                yVelocity = jumpPower;
+//                isJumping = true;
+//            }
+//        }
+//        else
+//        {
+//            yVelocity += gravity * Time.deltaTime;
+//        }
+
+//        // 이동 속도에 맞춰 이동한다
+//        Vector3 verticalMovement = Vector3.up * yVelocity * Time.deltaTime;
+//        cc.Move(horizontalMovement + verticalMovement);
+
+//        //// 애니메이터에 속도 값 전달
+//        //animator.SetFloat("Speed", horizontalMovement.magnitude);
+
+//        //// 점프 애니메이션 처리
+//        //animator.SetBool("isJumping", !cc.isGrounded);
+
+//        // 애니메이터를 사용한 회전 애니메이션 주기
+//        if (ws == 0)
+//        {
+//            Foward.SetTrigger("Idle");
+
+//        }
+//        else 
+//        {
+//            Foward.SetTrigger("forwardLeg");
+//            Foward.SetTrigger("backLeg");
+//        }
+
+//    }
+//}
+
 // 전처럼 점프가 부자연스러워짐
 //using UnityEngine;
 
@@ -175,77 +388,82 @@
 
 
 
-// 기존 정상 작동  점프력 2배 버그 수정
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+//// 기존 정상 작동  점프력 2배 버그 수정ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ알파
+//using System.Collections;
+//using System.Collections.Generic;
+//using Unity.VisualScripting.FullSerializer;
+//using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
-{
-    // 플레이어 속도랑 방향
-    public float MoveSpeed = 3.0f;
-    public float RunSpeed = 7.0f;
+//public class PlayerMove : MonoBehaviour
+//{
+//    // 플레이어 속도랑 방향
+//    public float MoveSpeed = 3.0f;
+//    public float RunSpeed = 7.0f;
 
-    // 캐릭터 컨트롤러 변수
-    CharacterController cc;
+//    // 캐릭터 컨트롤러 변수
+//    CharacterController cc;
 
-    // 중력 변수
-    float gravity = -20f;
+//    // 중력 변수
+//    float gravity = -20f;
 
-    // 수직 속력 변수
-    public float yVelocity = 0;
+//    // 수직 속력 변수
+//    public float yVelocity = 0;
 
-    // 점프력 변수
-    public float jumpPower = 5f;
+//    // 점프력 변수
+//    public float jumpPower = 5f;
 
-    // 점프 확인 변수
-    public bool isJumping = false;
+//    // 점프 확인 변수
+//    public bool isJumping = false;
 
-    private void Start()
-    {
-        // 캐릭터 컨트롤러 컴포넌트 받아오기
-        cc = GetComponent<CharacterController>();
-    }
+//    // 애니메이터
+//    private Animator Foward;
 
-    void Update()
-    {
-        // 플레이어 앞뒤, 좌우, 점프
-        float ws = Input.GetAxis("Horizontal");
-        float ad = Input.GetAxis("Vertical");
+//    private void Start()
+//    {
+//        // 캐릭터 컨트롤러 컴포넌트 받아오기
+//        cc = GetComponent<CharacterController>();
+//    }
 
-        // 이동 방향 설정
-        Vector3 direction = new Vector3(ws, 0, ad);
-        direction.Normalize();
+//    void Update()
+//    {
+//        // 플레이어 앞뒤, 좌우, 점프
+//        float ws = Input.GetAxis("Horizontal");
+//        float ad = Input.GetAxis("Vertical");
 
-        // 달리기 체크 ( ctrl 키 누르면 달리기)
-        bool isRunning = Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.W);
-        float currentSpeed = isRunning ? RunSpeed : MoveSpeed;
+//        // 이동 방향 설정
+//        Vector3 direction = new Vector3(ws, 0, ad);
+//        direction.Normalize();
 
-        // 카메라 기준으로 방향 변환
-        direction = Camera.main.transform.TransformDirection(direction);
-        Vector3 horizontalMovement = direction * currentSpeed * Time.deltaTime;
+//        // 달리기 체크 ( ctrl 키 누르면 달리기)
+//        bool isRunning = Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.W);
+//        float currentSpeed = isRunning ? RunSpeed : MoveSpeed;
 
-        // 캐릭터 수직속도에 중력값을 적용한다.
-        if (cc.isGrounded)
-        {
-            yVelocity = -1f; // 바닥에 있을 때 수직 속도를 약간 음수로 설정하여 붙어 있게 함
-            if (Input.GetButtonDown("Jump"))
-            {
-                // 캐릭터 수직 속도에 점프력 작용
-                yVelocity = jumpPower;
-                isJumping = true;
-            }
-        }
-        else
-        {
-            yVelocity += gravity * Time.deltaTime;
-        }
+//        // 카메라 기준으로 방향 변환
+//        direction = Camera.main.transform.TransformDirection(direction);
+//        Vector3 horizontalMovement = direction * currentSpeed * Time.deltaTime;
 
-        // 이동 속도에 맞춰 이동한다
-        Vector3 verticalMovement = Vector3.up * yVelocity * Time.deltaTime;
-        cc.Move(horizontalMovement + verticalMovement);
-    }
-}
+//        // 캐릭터 수직속도에 중력값을 적용한다.
+//        if (cc.isGrounded)
+//        {
+//            yVelocity = -1f; // 바닥에 있을 때 수직 속도를 약간 음수로 설정하여 붙어 있게 함
+//            if (Input.GetButtonDown("Jump"))
+//            {
+//                // 캐릭터 수직 속도에 점프력 작용
+//                yVelocity = jumpPower;
+//                isJumping = true;
+//            }
+//        }
+//        else
+//        {
+//            yVelocity += gravity * Time.deltaTime;
+//        }
+
+//        // 이동 속도에 맞춰 이동한다
+//        Vector3 verticalMovement = Vector3.up * yVelocity * Time.deltaTime;
+//        cc.Move(horizontalMovement + verticalMovement);
+
+//    }
+//}
 
 
 //// 점프와 달리기 동시에 하면 점프력도 2배가 됨.

@@ -28,11 +28,14 @@ public class PlayerMove : MonoBehaviour
     // 애니메이터
     private Animator animator;
 
+    public float ws = Input.GetAxis("Horizontal");
+    public float ad = Input.GetAxis("Vertical");
+
     private void Start()
     {
         // 캐릭터 컨트롤러 컴포넌트 받아오기
         cc = GetComponent<CharacterController>();
-        animator = transform.GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -40,6 +43,9 @@ public class PlayerMove : MonoBehaviour
         // 플레이어 앞뒤, 좌우, 점프
         float ws = Input.GetAxis("Horizontal");
         float ad = Input.GetAxis("Vertical");
+
+        animator.SetFloat("ForwardMove", ws);
+        animator.SetFloat("BackMove", ad);
 
         // 이동 방향 설정
         Vector3 direction = new Vector3(ws, 0, ad);
@@ -73,6 +79,10 @@ public class PlayerMove : MonoBehaviour
         Vector3 verticalMovement = Vector3.up * yVelocity * Time.deltaTime;
         cc.Move(horizontalMovement + verticalMovement);
 
+        //if(horizontalMove == )
+        //animator.SetBool("isRunning", false);
+
+
         // 이동 중일 때만 애니메이션 재생
         //if (horizontalMovement.magnitude > 0.1f || verticalMovement.magnitude > 0.1f)
         //{
@@ -82,14 +92,25 @@ public class PlayerMove : MonoBehaviour
         //{
         //    animator.SetBool("IsMoving", false);
         //}
-
         if (ws > 0.2f)
         {
             animator.SetTrigger("BackMove");
         }
         else if (ws < -0.2f)
         {
+            animator.SetTrigger("ForwardMove");
+        }
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
+        if (ad > 0.2f)
+        {
             animator.SetTrigger("BackMove");
+        }
+        else if (ad < -0.2f)
+        {
+            animator.SetTrigger("ForwardMove");
         }
         else
         {
@@ -102,6 +123,34 @@ public class PlayerMove : MonoBehaviour
         //else
         //    animator.CrossFade("idle");
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (ws > 0.2f)
+        {
+            animator.SetTrigger("BackMove");
+        }
+        else if (ws < -0.2f)
+        {
+            animator.SetTrigger("ForwardMove");
+        }
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
+        if (ad > 0.2f)
+        {
+            animator.SetTrigger("BackMove");
+        }
+        else if (ad < -0.2f)
+        {
+            animator.SetTrigger("ForwardMove");
+        }
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
+    }
+
 
 }
 

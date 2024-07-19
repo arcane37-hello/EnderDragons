@@ -7,27 +7,15 @@ public class AttackMonster : MonoBehaviour
     public float damagePerClick = 2f; // 클릭당 입히는 기본 데미지
     public float swordDamageBonus = 5f; // 칼이 활성화되었을 때 추가로 입히는 데미지
 
-    private GameObject affectedObject; // 특정 몬스터를 참조할 변수
-
     private bool isSwordActive = false; // 칼이 활성화되었는지 여부
-
     private Rigidbody rb;
     private float moveForce = 5f;
     private float jumpForce = 5f;
 
     void Start()
     {
-        // 예제로 affectedObject를 Scene에서 "Enemy" 태그를 가진 첫 번째 오브젝트로 설정
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies.Length > 0)
-        {
-            affectedObject = enemies[0];
-        }
-        else
-        {
-            Debug.LogError("No enemy found with 'Enemy' tag.");
-        }
-
+        // affectedObject를 이 스크립트가 붙어 있는 오브젝트 자신으로 설정
+        // 'affectedObject' 변수는 더 이상 필요 없으므로 삭제
         rb = GetComponent<Rigidbody>();
     }
 
@@ -42,8 +30,8 @@ public class AttackMonster : MonoBehaviour
             // 클릭된 위치의 오브젝트 가져오기
             GameObject clickedObject = GetClickedObject();
 
-            // affectedObject가 설정되어 있고 클릭된 오브젝트가 affectedObject일 때만 동작
-            if (clickedObject != null && clickedObject == affectedObject)
+            // 클릭된 오브젝트가 이 스크립트가 붙어 있는 오브젝트와 같은 경우에만 동작
+            if (clickedObject != null && clickedObject == gameObject)
             {
                 // 데미지 적용
                 float totalDamage = damagePerClick;
@@ -56,7 +44,7 @@ public class AttackMonster : MonoBehaviour
                 int damageInt = Mathf.RoundToInt(totalDamage);
 
                 // Enemy 태그를 가진 오브젝트에서 MonsterHealth 컴포넌트를 가져와서 데미지 적용
-                MonsterHealth monsterHealth = affectedObject.GetComponent<MonsterHealth>();
+                MonsterHealth monsterHealth = GetComponent<MonsterHealth>();
                 if (monsterHealth != null)
                 {
                     monsterHealth.TakeDamage(damageInt);
@@ -69,7 +57,7 @@ public class AttackMonster : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Affected object does not have MonsterHealth component.");
+                    Debug.LogError("This object does not have MonsterHealth component.");
                 }
             }
         }

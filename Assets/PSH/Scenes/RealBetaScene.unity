@@ -2505,6 +2505,9 @@ MonoBehaviour:
   breadPrefab: {fileID: 1898762604}
   grassPrefab: {fileID: 114322325}
   rockPrefab: {fileID: 887001187}
+  bowAnimator: {fileID: 931416846}
+  drawAnimationName: Bow
+  drawAnimationSpeed: 1
   maxArrowForce: 50
   minArrowForce: 10
   maxAimingTime: 3
@@ -7235,6 +7238,9 @@ MonoBehaviour:
   breadPrefab: {fileID: 0}
   grassPrefab: {fileID: 0}
   rockPrefab: {fileID: 0}
+  bowAnimator: {fileID: 0}
+  drawAnimationName: DrawBow
+  drawAnimationSpeed: 1
   maxArrowForce: 50
   minArrowForce: 10
   maxAimingTime: 3

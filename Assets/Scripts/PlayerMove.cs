@@ -1,4 +1,4 @@
-// 알파에서 애니메이션 추가 2번째 시도 (새로운 ai 도움)
+// 애니메이션 + 작은블럭 먹기
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
@@ -26,7 +26,11 @@ public class PlayerMove : MonoBehaviour
     public bool isJumping = false;
 
     // 애니메이터
-    private Animator animator;
+    public Animator animator;
+    public Animator animator2;
+    public Animator animator3;
+    public Animator animator4;
+
 
     public float ws = Input.GetAxis("Horizontal");
     public float ad = Input.GetAxis("Vertical");
@@ -35,7 +39,7 @@ public class PlayerMove : MonoBehaviour
     {
         // 캐릭터 컨트롤러 컴포넌트 받아오기
         cc = GetComponent<CharacterController>();
-        animator = GetComponentInChildren<Animator>();
+     
     }
 
     void Update()
@@ -79,80 +83,259 @@ public class PlayerMove : MonoBehaviour
         Vector3 verticalMovement = Vector3.up * yVelocity * Time.deltaTime;
         cc.Move(horizontalMovement + verticalMovement);
 
-        //if(horizontalMove == )
-        //animator.SetBool("isRunning", false);
-
-
-        // 이동 중일 때만 애니메이션 재생
-        //if (horizontalMovement.magnitude > 0.1f || verticalMovement.magnitude > 0.1f)
-        //{
-        //    animator.SetBool("IsMoving", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("IsMoving", false);
-        //}
-        if (ws > 0.2f)
+        if (ws == 0 && ad == 0)
         {
-            animator.SetTrigger("BackMove");
-        }
-        else if (ws < -0.2f)
-        {
-            animator.SetTrigger("ForwardMove");
+            animator.SetBool("isRunning", false);
         }
         else
         {
-            animator.SetTrigger("Idle");
+            animator.SetBool("isRunning", true);
         }
-        if (ad > 0.2f)
+        if (ws == 0 && ad == 0)
         {
-            animator.SetTrigger("BackMove");
-        }
-        else if (ad < -0.2f)
-        {
-            animator.SetTrigger("ForwardMove");
+            animator2.SetBool("isRunning", false);
         }
         else
         {
-            animator.SetTrigger("Idle");
+            animator2.SetBool("isRunning", true);
         }
-
-
-        //if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.1)
-        //    animator.CrossFade("walk");
-        //else
-        //    animator.CrossFade("idle");
+        if (ws == 0 && ad == 0)
+        {
+            animator3.SetBool("isRunning", false);
+        }
+        else
+        {
+            animator3.SetBool("isRunning", true);
+        }
+        if (ws == 0 && ad == 0)
+        {
+            animator3.SetBool("isRunning", false);
+        }
+        else
+        {
+            animator3.SetBool("isRunning", true);
+        }
+        if (ws == 0 && ad == 0)
+        {
+            animator4.SetBool("isRunning", false);
+        }
+        else
+        {
+            animator4.SetBool("isRunning", true);
+        }
+            
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (ws > 0.2f)
+        // 충돌한 대상의 태그가 "smallblock"라면  오브젝트를 제거한다.
+        if (other.gameObject.name.Contains ("SmallBlock"))
         {
-            animator.SetTrigger("BackMove");
-        }
-        else if (ws < -0.2f)
-        {
-            animator.SetTrigger("ForwardMove");
-        }
-        else
-        {
-            animator.SetTrigger("Idle");
-        }
-        if (ad > 0.2f)
-        {
-            animator.SetTrigger("BackMove");
-        }
-        else if (ad < -0.2f)
-        {
-            animator.SetTrigger("ForwardMove");
-        }
-        else
-        {
-            animator.SetTrigger("Idle");
+            Destroy(other.gameObject);
         }
     }
-
-
 }
+
+
+//// 알파에서 애니메이션 추가 2번째 시도 (새로운 ai 도움)------------------------성공
+//using System.Collections;
+//using System.Collections.Generic;
+//using Unity.VisualScripting.FullSerializer;
+//using UnityEngine;
+
+//public class PlayerMove : MonoBehaviour
+//{
+//    // 플레이어 속도랑 방향
+//    public float MoveSpeed = 3.0f;
+//    public float RunSpeed = 7.0f;
+
+//    // 캐릭터 컨트롤러 변수
+//    CharacterController cc;
+
+//    // 중력 변수
+//    float gravity = -20f;
+
+//    // 수직 속력 변수
+//    public float yVelocity = 0;
+
+//    // 점프력 변수
+//    public float jumpPower = 5f;
+
+//    // 점프 확인 변수
+//    public bool isJumping = false;
+
+//    // 애니메이터
+//    public Animator animator;
+//    public Animator animator2;
+//    public Animator animator3;
+//    public Animator animator4;
+
+
+//    public float ws = Input.GetAxis("Horizontal");
+//    public float ad = Input.GetAxis("Vertical");
+
+//    private void Start()
+//    {
+//        // 캐릭터 컨트롤러 컴포넌트 받아오기
+//        cc = GetComponent<CharacterController>();
+//        //animator = GetComponentInChildren<Animator>();
+//        //animator2 = GetComponentInChildren<Animator>();
+//       // animator3 = GetComponentInChildren<Animator>();
+//      //  animator4 = GetComponentInChildren<Animator>();
+//    }
+
+//    void Update()
+//    {
+//        // 플레이어 앞뒤, 좌우, 점프
+//        float ws = Input.GetAxis("Horizontal");
+//        float ad = Input.GetAxis("Vertical");
+
+//        animator.SetFloat("ForwardMove", ws);
+//        animator.SetFloat("BackMove", ad);
+
+//        // 이동 방향 설정
+//        Vector3 direction = new Vector3(ws, 0, ad);
+//        direction.Normalize();
+
+//        // 달리기 체크 ( ctrl 키 누르면 달리기)
+//        bool isRunning = Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.W);
+//        float currentSpeed = isRunning ? RunSpeed : MoveSpeed;
+
+//        // 카메라 기준으로 방향 변환
+//        direction = Camera.main.transform.TransformDirection(direction);
+//        Vector3 horizontalMovement = direction * currentSpeed * Time.deltaTime;
+
+//        // 캐릭터 수직속도에 중력값을 적용한다.
+//        if (cc.isGrounded)
+//        {
+//            yVelocity = -1f; // 바닥에 있을 때 수직 속도를 약간 음수로 설정하여 붙어 있게 함
+//            if (Input.GetButtonDown("Jump"))
+//            {
+//                // 캐릭터 수직 속도에 점프력 작용
+//                yVelocity = jumpPower;
+//                isJumping = true;
+//            }
+//        }
+//        else
+//        {
+//            yVelocity += gravity * Time.deltaTime;
+//        }
+
+//        // 이동 속도에 맞춰 이동한다
+//        Vector3 verticalMovement = Vector3.up * yVelocity * Time.deltaTime;
+//        cc.Move(horizontalMovement + verticalMovement);
+
+//        if (ws == 0 && ad == 0)
+//        {
+//            animator.SetBool("isRunning", false);
+//        }
+//        else
+//        {
+//            animator.SetBool("isRunning",true);
+//        } 
+//        if (ws == 0 && ad == 0)
+//        {
+//            animator2.SetBool("isRunning", false);
+//        }
+//        else
+//        {
+//            animator2.SetBool("isRunning",true);
+//        }
+//        if (ws == 0 && ad == 0)
+//        {
+//            animator3.SetBool("isRunning", false);
+//        }
+//        else
+//        {
+//            animator3.SetBool("isRunning",true);
+//        }
+//        if (ws == 0 && ad == 0)
+//        {
+//            animator3.SetBool("isRunning", false);
+//        }
+//        else
+//        {
+//            animator3.SetBool("isRunning",true);
+//        }
+//        if (ws == 0 && ad == 0)
+//        {
+//            animator4.SetBool("isRunning", false);
+//        }
+//        else
+//        {
+//            animator4.SetBool("isRunning",true);
+//        }
+
+
+//        // 이동 중일 때만 애니메이션 재생
+//        //if (horizontalMovement.magnitude > 0.1f || verticalMovement.magnitude > 0.1f)
+//        //{
+//        //    animator.SetBool("IsMoving", true);
+//        //}
+//        //else
+//        //{
+//        //    animator.SetBool("IsMoving", false);
+//        //}
+//        //if (ws > 0.2f)
+//        //{
+//        //    animator.SetTrigger("BackMove");
+//        //}
+//        //else if (ws < -0.2f)
+//        //{
+//        //    animator.SetTrigger("ForwardMove");
+//        //}
+//        //else
+//        //{
+//        //    animator.SetTrigger("Idle");
+//        //}
+//        //if (ad > 0.2f)
+//        //{
+//        //    animator.SetTrigger("BackMove");
+//        //}
+//        //else if (ad < -0.2f)
+//        //{
+//        //    animator.SetTrigger("ForwardMove");
+//        //}
+//        //else
+//        //{
+//        //    animator.SetTrigger("Idle");
+//        //}
+
+
+//        //if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.1)
+//        //    animator.CrossFade("walk");
+//        //else
+//        //    animator.CrossFade("idle");
+//    }
+//    //private void OnTriggerEnter(Collider other)
+//    //{
+//    //    if (ws > 0.2f)
+//    //    {
+//    //        animator.SetTrigger("BackMove");
+//    //    }
+//    //    else if (ws < -0.2f)
+//    //    {
+//    //        animator.SetTrigger("ForwardMove");
+//    //    }
+//    //    else
+//    //    {
+//    //        animator.SetTrigger("Idle");
+//    //    }
+//    //    if (ad > 0.2f)
+//    //    {
+//    //        animator.SetTrigger("BackMove");
+//    //    }
+//    //    else if (ad < -0.2f)
+//    //    {
+//    //        animator.SetTrigger("ForwardMove");
+//    //    }
+//    //    else
+//    //    {
+//    //        animator.SetTrigger("Idle");
+//    //    }
+//    //}
+
+
+//}
 
 
 

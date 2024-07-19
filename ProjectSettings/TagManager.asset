@@ -10,6 +10,7 @@ TagManager:
   - WitherBoss
   - Missile
   - Arrow
+  - SmallBlock
   layers:
   - Default
   - TransparentFX

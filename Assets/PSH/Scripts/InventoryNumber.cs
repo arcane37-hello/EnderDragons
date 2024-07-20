@@ -12,10 +12,6 @@ public class InventoryNumber : MonoBehaviour
     public GameObject grassPrefab;
     public GameObject rockPrefab;
 
-    public Animator bowAnimator; // 활의 애니메이터 컴포넌트
-    public string drawAnimationName = "DrawBow"; // 애니메이션 클립 이름 (이 애니메이션이 재생됩니다)
-    public float drawAnimationSpeed = 1f; // 애니메이션 속도 조절
-
     public float maxArrowForce = 50f;
     public float minArrowForce = 10f;
     public float maxAimingTime = 3f;
@@ -103,15 +99,7 @@ public class InventoryNumber : MonoBehaviour
                 aimTime = maxAimingTime;
             }
 
-            // 활이 활성화된 상태에서 오른쪽 마우스 버튼을 누르고 있을 때 애니메이션 재생
-            if (bowAnimator != null)
-            {
-                bowAnimator.speed = drawAnimationSpeed;
-                if (!bowAnimator.GetCurrentAnimatorStateInfo(0).IsName(drawAnimationName))
-                {
-                    bowAnimator.Play(drawAnimationName);
-                }
-            }
+            
         }
         else if (Input.GetMouseButtonUp(1) && isAiming)
         {
@@ -119,39 +107,12 @@ public class InventoryNumber : MonoBehaviour
             isAiming = false;
             aimTime = 0f;
 
-            // 애니메이션을 정지하고 오브젝트의 rotation 값을 (0, 0, 0)으로 설정
-            if (bowAnimator != null)
-            {
-                if (bowAnimator.GetCurrentAnimatorStateInfo(0).IsName(drawAnimationName))
-                {
-                    bowAnimator.StopPlayback(); // 애니메이션 정지
-                }
-            }
-
-            // 활성화된 오브젝트의 rotation 값을 (0, 0, 0)으로 설정
-            if (bowPrefab != null)
-            {
-                bowPrefab.transform.rotation = Quaternion.identity; // (0, 0, 0)으로 설정
-            }
+            
         }
         else if (Input.GetMouseButtonUp(1) && !isAiming)
         {
             aimTime = 0f;
-
-            // 애니메이션을 정지하고 오브젝트의 rotation 값을 (0, 0, 0)으로 설정
-            if (bowAnimator != null)
-            {
-                if (bowAnimator.GetCurrentAnimatorStateInfo(0).IsName(drawAnimationName))
-                {
-                    bowAnimator.StopPlayback(); // 애니메이션 정지
-                }
-            }
-
-            // 활성화된 오브젝트의 rotation 값을 (0, 0, 0)으로 설정
-            if (bowPrefab != null)
-            {
-                bowPrefab.transform.rotation = Quaternion.identity; // (0, 0, 0)으로 설정
-            }
+          
         }
     }
 

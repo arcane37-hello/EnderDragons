@@ -12,15 +12,15 @@ public class InventoryNumber : MonoBehaviour
     public GameObject grassPrefab;
     public GameObject rockPrefab;
 
-    private GameObject currentWeapon;
-    private bool isBowActive = false;
-    private bool isAiming = false;
-    private float aimTime = 0f;
-
     public float maxArrowForce = 50f;
     public float minArrowForce = 10f;
     public float maxAimingTime = 3f;
     public Transform arrowSpawnPoint; // 화살 발사 위치
+
+    private GameObject currentWeapon;
+    private bool isBowActive = false;
+    private bool isAiming = false;
+    private float aimTime = 0f;
 
     private static InventoryNumber instance;
 
@@ -98,17 +98,21 @@ public class InventoryNumber : MonoBehaviour
             {
                 aimTime = maxAimingTime;
             }
+
+            
         }
         else if (Input.GetMouseButtonUp(1) && isAiming)
         {
             ShootArrow();
             isAiming = false;
             aimTime = 0f;
-        }
 
-        if (Input.GetMouseButtonUp(1) && !isAiming)
+            
+        }
+        else if (Input.GetMouseButtonUp(1) && !isAiming)
         {
             aimTime = 0f;
+          
         }
     }
 

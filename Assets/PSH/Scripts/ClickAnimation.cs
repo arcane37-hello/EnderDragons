@@ -26,10 +26,6 @@ public class ClickAnimation : MonoBehaviour
                 // "TriggerName"이라는 이름의 트리거 파라미터 트리거
                 animator.SetTrigger("Cycle");
             }
-            else
-            {
-                Debug.LogWarning("Animator component is not assigned.");
-            }
         }
     }
 }

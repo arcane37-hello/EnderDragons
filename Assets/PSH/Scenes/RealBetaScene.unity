@@ -689,6 +689,7 @@ MonoBehaviour:
   healthRestoreAmount: 1
   healthRestoreInterval: 1
   gameOverUI: {fileID: 0}
+  sounds: []
 --- !u!1 &137421972
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,6 +2626,7 @@ MonoBehaviour:
   healthRestoreAmount: 1
   healthRestoreInterval: 1
   gameOverUI: {fileID: 0}
+  sounds: []
 --- !u!54 &494338362
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2647,7 +2649,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 0
   m_ImplicitTensor: 0
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
@@ -2750,6 +2752,10 @@ MonoBehaviour:
   yVelocity: 0
   jumpPower: 10
   isJumping: 0
+  animator: {fileID: 0}
+  animator2: {fileID: 0}
+  animator3: {fileID: 0}
+  animator4: {fileID: 0}
   ws: 0
   ad: 0
 --- !u!65 &494338368
@@ -7230,6 +7236,7 @@ MonoBehaviour:
   healthRestoreAmount: 1
   healthRestoreInterval: 1
   gameOverUI: {fileID: 0}
+  sounds: []
 --- !u!114 &1685444970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7346,6 +7353,10 @@ MonoBehaviour:
   yVelocity: 0
   jumpPower: 12
   isJumping: 0
+  animator: {fileID: 0}
+  animator2: {fileID: 0}
+  animator3: {fileID: 0}
+  animator4: {fileID: 0}
   ws: 0
   ad: 0
 --- !u!65 &1685444976
@@ -7557,6 +7568,10 @@ MonoBehaviour:
   yVelocity: 0
   jumpPower: 10
   isJumping: 0
+  animator: {fileID: 0}
+  animator2: {fileID: 0}
+  animator3: {fileID: 0}
+  animator4: {fileID: 0}
   ws: 0
   ad: 0
 --- !u!114 &1752146681

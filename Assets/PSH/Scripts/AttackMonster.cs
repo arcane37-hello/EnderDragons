@@ -12,11 +12,16 @@ public class AttackMonster : MonoBehaviour
     private float moveForce = 5f;
     private float jumpForce = 5f;
 
+    public AudioClip[] sounds; //소리 배열
+    AudioSource audioSource2;
+
     void Start()
     {
         // affectedObject를 이 스크립트가 붙어 있는 오브젝트 자신으로 설정
         // 'affectedObject' 변수는 더 이상 필요 없으므로 삭제
         rb = GetComponent<Rigidbody>();
+        // 오디오
+        audioSource2 = transform.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -55,10 +60,14 @@ public class AttackMonster : MonoBehaviour
                     // 점프 효과 주기
                     rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 }
-                else
-                {
-                    Debug.LogError("This object does not have MonsterHealth component.");
-                }
+                // 빵먹는 소리를 실행한다.
+                audioSource2.clip = sounds[0];
+                audioSource2.volume = 3f;
+                audioSource2.Play();
+                //else
+                //{
+                //    Debug.LogError("This object does not have MonsterHealth component.");
+                //}
             }
         }
     }

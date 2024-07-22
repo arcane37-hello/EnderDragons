@@ -12,21 +12,64 @@ public class ZombieAi : MonoBehaviour
 
     private bool isAttacking = false;
     private Rigidbody rb;
+   
+    // 애니메이터
+    public Animator animator;
+    public Animator animator2;
+    public Animator animator3;
+
+    public float ws = Input.GetAxis("Horizontal");
+    public float ad = Input.GetAxis("Vertical");
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>(); // Get the Animator component
         InvokeRepeating("CheckPlayerDistance", 0f, 0.5f);
     }
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.position) <= detectionRange && !isAttacking)
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= detectionRange && !isAttacking)
         {
             Vector3 direction = (player.position - transform.position).normalized;
             transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
             transform.LookAt(player);
+
+            // Trigger walking animations
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            // Stop walking animations
+            animator.SetBool("isWalking", false);
+        }
+        if (ws == 0 && ad == 0)
+        {
+            animator.SetBool("isRunning", false);
+        }
+        else
+        {
+            animator.SetBool("isRunning", true);
+        }
+        if (ws == 0 && ad == 0)
+        {
+            animator2.SetBool("isRunning", false);
+        }
+        else
+        {
+            animator2.SetBool("isRunning", true);
+        }
+        if (ws == 0 && ad == 0)
+        {
+            animator3.SetBool("isRunning", false);
+        }
+        else
+        {
+            animator3.SetBool("isRunning", true);
         }
     }
 
@@ -83,8 +126,104 @@ public class ZombieAi : MonoBehaviour
     void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        // Trigger jump animation if necessary
+        animator.SetTrigger("Jump");
     }
 }
+
+
+
+// 기존 좀비
+//using UnityEngine;
+
+//public class ZombieAi : MonoBehaviour
+//{
+//    public Transform player;
+//    public float moveSpeed = 3f;
+//    public float detectionRange = 10f;
+//    public float attackRange = 2f;
+//    public float attackDelay = 2f;
+//    public float jumpForce = 5f;
+//    public int damage = 1; // 공격 시 입히는 데미지
+
+//    private bool isAttacking = false;
+//    private Rigidbody rb;
+
+
+//    void Start()
+//    {
+//        player = GameObject.FindGameObjectWithTag("Player").transform;
+//        rb = GetComponent<Rigidbody>();
+//        InvokeRepeating("CheckPlayerDistance", 0f, 0.5f);
+
+
+//    }
+
+//    void Update()
+//    {
+//        if (Vector3.Distance(transform.position, player.position) <= detectionRange && !isAttacking)
+//        {
+//            Vector3 direction = (player.position - transform.position).normalized;
+//            transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
+//            transform.LookAt(player);
+//        }
+//    }
+
+//    void CheckPlayerDistance()
+//    {
+//        if (Vector3.Distance(transform.position, player.position) <= attackRange)
+//        {
+//            if (!isAttacking)
+//            {
+//                isAttacking = true;
+//                Invoke("AttackPlayer", attackDelay);
+//            }
+//        }
+//        else
+//        {
+//            isAttacking = false;
+//        }
+//    }
+
+//    void AttackPlayer()
+//    {
+//        Debug.Log("공격!");
+
+//        if (Vector3.Distance(transform.position, player.position) <= attackRange)
+//        {
+//            HungerAndHealthSystem playerHealth = player.GetComponent<HungerAndHealthSystem>();
+//            if (playerHealth != null)
+//            {
+//                playerHealth.TakeDamage(damage);
+//            }
+//        }
+
+//        Invoke("ResetAttack", attackDelay);
+//    }
+
+//    void ResetAttack()
+//    {
+//        isAttacking = false;
+//    }
+
+//    void OnCollisionEnter(Collision collision)
+//    {
+//        if (collision.gameObject.CompareTag("Ground"))
+//        {
+//            Vector3 normal = collision.contacts[0].normal;
+
+//            if (Mathf.Abs(normal.y) < 0.1f)
+//            {
+//                Jump();
+//            }
+//        }
+//    }
+
+//    void Jump()
+//    {
+//        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+//    }
+//}
 
 //using System.Collections;
 //using System.Collections.Generic;

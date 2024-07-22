@@ -1738,10 +1738,10 @@ Animator:
   m_GameObject: {fileID: 295737939}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f3cfd4ff1f12faa4e87c830f0322b959, type: 2}
+  m_Controller: {fileID: 9100000, guid: 81775d1b13ad85144aa5a2711399f5b1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -2909,10 +2909,10 @@ Animator:
   m_GameObject: {fileID: 640098500}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ea637cde6a462ed44899aabbeae02cd6, type: 2}
+  m_Controller: {fileID: 9100000, guid: fe356a2f9b9daf84c80ca61dffd9a574, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -3326,6 +3326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePerClick: 2
   swordDamageBonus: 5
+  sounds: []
 --- !u!114 &743813474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3345,6 +3346,11 @@ MonoBehaviour:
   attackDelay: 2
   jumpForce: 3
   damage: 1
+  animator: {fileID: 0}
+  animator2: {fileID: 0}
+  animator3: {fileID: 0}
+  ws: 0
+  ad: 0
 --- !u!114 &743813475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3483,7 +3489,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743813471}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a7b7d6c318965d44081ee805a7b0461d, type: 2}
   m_CullingMode: 0
@@ -3598,7 +3604,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.8499994, z: 0}
-  m_LocalScale: {x: 1, y: 0.7, z: 1.4000003}
+  m_LocalScale: {x: 1.32, y: 1.2453414, z: 1.4000003}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2130295607}
@@ -7578,7 +7584,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5306517217171119384, guid: db244b4408ba24c468a4ed7187aa7ea2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5306517217171119384, guid: db244b4408ba24c468a4ed7187aa7ea2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7624,6 +7630,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie
       objectReference: {fileID: 0}
+    - target: {fileID: 6781966022231668396, guid: db244b4408ba24c468a4ed7187aa7ea2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7069bb3d34c634a4e9e9f6c3308d91dd, type: 2}
     - target: {fileID: 8968173862127884638, guid: db244b4408ba24c468a4ed7187aa7ea2, type: 3}
       propertyPath: player
       value: 
@@ -8695,7 +8705,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 9d21f5e73274f19498658ad2645458cb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -8992,7 +9002,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 9, y: 8, z: 0}
-  m_LocalScale: {x: 0.6999999, y: 1, z: 0.49999988}
+  m_LocalScale: {x: 0.32288915, y: 0.3406279, z: 0.33348992}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 790697099}
@@ -9080,7 +9090,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130295606}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
@@ -9121,6 +9131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePerClick: 2
   swordDamageBonus: 5
+  sounds:
+  - {fileID: 8300000, guid: 43ece262ed7f6ec41a9bda9b4ef78834, type: 3}
 --- !u!114 &2130295614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9134,12 +9146,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1376560629}
-  moveSpeed: 3
+  moveSpeed: 4
   detectionRange: 10
   attackRange: 2
   attackDelay: 2
-  jumpForce: 5
+  jumpForce: 10
   damage: 1
+  animator: {fileID: 295737941}
+  animator2: {fileID: 640098502}
+  animator3: {fileID: 640098502}
+  ws: 0
+  ad: 0
 --- !u!114 &2130295615
 MonoBehaviour:
   m_ObjectHideFlags: 0
